@@ -8,13 +8,11 @@ import { Observable } from 'rxjs';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  firestore: Firestore = inject(Firestore)
-  items$: Observable<any[]>;
+
 
   title = 'simple_CRM';
 
   constructor() {
-    const aCollection = collection(this.firestore, 'items')
-    this.items$ = collectionData(aCollection);
+
   }
 }
