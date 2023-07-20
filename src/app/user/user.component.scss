@@ -4,3 +4,32 @@
     bottom: 56px;
 }
 
+.user-table{
+    border-collapse: collapse;
+    tr{
+        border-bottom: 1px solid rgba(0, 0, 0,0.4);
+        cursor: pointer;
+        &:hover{
+            background-color: rgba(0, 0, 0,0.2);
+        }
+        &:last-child{
+            border-bottom: 0;
+        }
+        &:first-child{
+            cursor: unset;
+            &:hover{
+                background-color: unset;
+            }
+        }
+    }
+    td{
+        height: 36px;
+        &:first-child{
+            padding-left: 16px;
+        }
+    }
+
+}
+
+
+

@@ -1,0 +1,50 @@
+.header-card{
+    height: 300px;
+    background-color: orange;
+    display: flex;
+    justify-content: flex-end;
+    padding: 16px;
+    color: white;
+
+
+}
+
+.img-container{
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    background-color: blue;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white;
+
+    img{
+        width: 50px;
+    }
+}
+
+.card-content{
+    display: flex;
+}
+
+.header-info{
+    margin-left: 16px;
+    display: flex;
+    flex-direction: column;
+    h2{
+        margin: 0px;
+    }
+
+}
+
+p{
+    margin: 0;
+}
+
+.pin-upper-right-corner{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
