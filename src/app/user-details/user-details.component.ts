@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CrudService } from '../crud.service';
-import { Firestore, doc, docData } from '@angular/fire/firestore';
+import { CrudService } from '../services/crud.service';
+import { Firestore, deleteDoc, doc, docData } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { User } from 'src/models/user.class';
 import { MatDialog } from '@angular/material/dialog';
@@ -46,13 +46,19 @@ export class UserDetailsComponent implements OnInit {
 
   openEdit() {
     const dialog = this.dialog.open(DialogEditAddressComponent);
-    dialog.componentInstance.user = this.user;
+    dialog.componentInstance.user = new User(this.user.toJson());
+    dialog.componentInstance.userId = this.userId;
   }
 
   openEditUser() {
     const dialog = this.dialog.open(DialogEditUserComponent);
-    dialog.componentInstance.user = this.user;
+    dialog.componentInstance.user = new User(this.user.toJson());
+    dialog.componentInstance.userId = this.userId;
 
   }
 
+  deleteUser() {
+    this.crud.deleteUser(this.userId);
+
+  }
 }

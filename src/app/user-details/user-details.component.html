@@ -5,9 +5,10 @@
         </button>
         <mat-menu #menuUser="matMenu">
             <button mat-menu-item (click)="openEditUser()">Edit</button>
-          </mat-menu>
-        <mat-card-title>Address</mat-card-title>
-    
+            <button [routerLink]="['/user']" mat-menu-item (click)="deleteUser()">Delete User</button>
+        </mat-menu>
+
+
         <div class="img-container">
             <img src="assets/profile-img.png" alt="">
         </div>
@@ -26,7 +27,8 @@
 
     <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="openEdit()">Edit</button>
-      </mat-menu>
+        <button [routerLink]="['/user']" mat-menu-item (click)="deleteUser()">Delete User</button>
+    </mat-menu>
     <mat-card-title>Address</mat-card-title>
 
     <p>{{user.street}}</p>

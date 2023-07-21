@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, addDoc, collection, collectionData, doc, docData } from '@angular/fire/firestore';
+import { CollectionReference, Firestore, QuerySnapshot, addDoc, collection, collectionData, deleteDoc, doc, docData, getCountFromServer, setDoc, updateDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { User } from 'src/models/user.class';
 
@@ -29,4 +29,23 @@ export class CrudService {
     return docData(userIdRef, { idField: 'id' }) as Observable<User[]>;
 
   }
+
+  updateUserById(userId) {
+    const userIdRef = doc(this.firestore, 'user', `${userId}`);
+    return updateDoc(userIdRef, this.user.toJson())
+
+  }
+
+  deleteUser(userId) {
+    const userIdRef = doc(this.firestore, `user/${userId}`);
+    return deleteDoc(userIdRef);
+  }
+
+  async countCollection() {
+    const coll = collection(this.firestore, 'user');
+    const snapshot = await getCountFromServer(coll);
+    console.log('count: ', snapshot.data().count);
+
+  }
+
 }

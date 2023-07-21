@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { User } from 'src/models/user.class';
-import { CrudService } from '../crud.service';
+import { CrudService } from '../services/crud.service';
 import { Firestore, addDoc, collection } from '@angular/fire/firestore';
 
 
@@ -26,7 +26,10 @@ export class DialogAddUserComponent {
 
   saveUser() {
     this.loading = true;
-    this.convertDate();
+    if(this.user.birthDate != ''){
+      this.convertDate();
+    }
+
 
     const userRef = collection(this.firestore, 'user');
     addDoc(userRef, this.user.toJson())
