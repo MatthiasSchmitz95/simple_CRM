@@ -1,4 +1,19 @@
-<button (click)="openDialog()"  matTooltip="add an user" class="add-user-bt" mat-fab color="primary" aria-label="Example icon button with a delete icon">
-    
-    <mat-icon>add</mat-icon>
-  </button>
+<mat-card>
+  <table class="user-table">
+    <tr>
+      <td>Name</td>
+      <td>Email</td>
+      <td>City</td>
+    </tr>
+    <tr *ngFor="let user of loadedUser" [routerLink]="['/user/' + user.id]">
+      <td>{{user.firstName}} {{user.lastName}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.city}}</td>
+    </tr>
+  </table>
+</mat-card>
+<button (click)="openDialog()" matTooltip="add an user" class="add-user-bt" mat-fab color="primary"
+  aria-label="Example icon button with a delete icon">
+
+  <mat-icon>add</mat-icon>
+</button>

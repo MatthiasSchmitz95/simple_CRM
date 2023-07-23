@@ -1,0 +1,15 @@
+.user-count-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    img{
+        width: 60px;
+        height: 60px;
+    }
+}
+
+p{
+    margin: 0;
+    font-size: 48px;
+}
