@@ -39,6 +39,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -54,7 +55,8 @@ import { VerifyEmailComponent } from './verify-email/verify-email.component';
     LoginComponent,
     SignUpComponent,
     ForgotPasswordComponent,
-    VerifyEmailComponent
+    VerifyEmailComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

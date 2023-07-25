@@ -29,7 +29,6 @@ export class CrudService {
   getUserById(userId) {
     const userIdRef = doc(this.firestore, `users/${this.authService.userData.uid}/customer/${userId}`);
     return docData(userIdRef, { idField: 'id' }) as Observable<User[]>;
-
   }
 
   updateUserById(userId) {
