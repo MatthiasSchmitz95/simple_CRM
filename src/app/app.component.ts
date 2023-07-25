@@ -1,7 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Firestore, collection, collectionData } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +11,5 @@ export class AppComponent {
 
   title = 'simple_CRM';
 
-  constructor() {
-  }
+  constructor(public authService: AuthService) {}
 }

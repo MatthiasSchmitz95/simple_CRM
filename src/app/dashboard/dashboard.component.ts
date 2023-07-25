@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudService } from '../services/crud.service';
 import { Firestore, collection, getCountFromServer } from '@angular/fire/firestore';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +10,7 @@ import { Firestore, collection, getCountFromServer } from '@angular/fire/firesto
 })
 export class DashboardComponent implements OnInit {
   userCount;
-  constructor(public crud:CrudService,public  firestore: Firestore){
+  constructor(public crud:CrudService,public  firestore: Firestore, public authService: AuthService){
 
   }
 ngOnInit(){
@@ -17,7 +18,7 @@ this.countCollection();
 }
 
 async countCollection() {
-  const coll = collection(this.firestore, 'user');
+  const coll = collection(this.firestore, `users/${this.authService.userData.uid}/customer`);
   const snapshot = await getCountFromServer(coll);
   this.userCount= snapshot.data().count;
 

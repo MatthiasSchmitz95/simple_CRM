@@ -13,6 +13,7 @@ import { UserData } from './user-data';
 
 export class AuthService {
   userData: any; // Save logged in user data
+  userId;
   constructor(
     public afs: AngularFirestore, // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
@@ -41,6 +42,7 @@ export class AuthService {
         this.afAuth.authState.subscribe((user) => {
           if (user) {
             this.router.navigate(['dashboard']);
+            this.userId = user.uid;
           }
         });
       })
@@ -79,6 +81,7 @@ export class AuthService {
       })
       .catch((error) => {
         window.alert(error);
+
       });
   }
   // Returns true when user is looged in and email is verified
