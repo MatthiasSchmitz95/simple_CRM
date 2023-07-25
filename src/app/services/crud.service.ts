@@ -9,20 +9,20 @@ import { AuthService } from './auth.service';
 })
 export class CrudService {
   user = new User();
-  userData:any;
+  userData: any;
 
-  constructor(public firestore: Firestore, public authService:AuthService) { }
+  constructor(public firestore: Firestore, public authService: AuthService) { }
 
   saveUser() {
     const userRef = collection(this.firestore, `users/${this.authService.userData.uid}/customer`);
     addDoc(userRef, this.user.toJson())
       .then((result: any) => {
-        console.log( this.authService.userData.uid, result);
+        console.log(this.authService.userData.uid, result);
       });
   }
 
   getUser(): Observable<User[]> {
-    const userRef  = collection(this.firestore, 'users', `${this.authService.userData.uid}/customer` );
+    const userRef = collection(this.firestore, 'users', `${this.authService.userData.uid}/customer`);
     return collectionData(userRef, { idField: 'id' }) as Observable<User[]>;
   }
 
