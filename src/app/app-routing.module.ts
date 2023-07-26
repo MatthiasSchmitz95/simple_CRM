@@ -20,7 +20,7 @@ const routes: Routes = [
   {path: 'sign-up', component: SignUpComponent},
   {path: 'password', component: ForgotPasswordComponent},
   {path: 'profile', component: ProfileComponent},
-  { path: 'verify-email-address', component: VerifyEmailComponent }
+  {path: 'verify-email-address', component: VerifyEmailComponent }
 ];
 
 @NgModule({

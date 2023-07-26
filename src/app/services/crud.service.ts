@@ -22,9 +22,18 @@ export class CrudService {
   }
 
   getUser(): Observable<User[]> {
-    const userRef = collection(this.firestore, 'users', `${this.authService.userData.uid}/customer`);
+    const userRef = this.getSubCollectionRef('users', 'customer', this.authService.userData.uid);
     return collectionData(userRef, { idField: 'id' }) as Observable<User[]>;
   }
+
+  getCollectionRef(collectionName: string){
+    return collection(this.firestore, collectionName);
+  }
+
+  getSubCollectionRef(collectionName: string, subCollectionName, collectionDocId:string){
+    return collection(this.firestore, collectionName, `${collectionDocId}/${subCollectionName}`);
+  }
+  
 
   getUserById(userId) {
     const userIdRef = doc(this.firestore, `users/${this.authService.userData.uid}/customer/${userId}`);

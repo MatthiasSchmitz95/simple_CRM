@@ -16,18 +16,23 @@ export class DashboardComponent implements OnInit {
 
   }
 async ngOnInit(){
+  this.authService.afAuth.authState.subscribe((user) => {
+    if (user) {
+      this.countCollection(user.uid);
+    } 
+  });
 
-  if (!this.authService.userData.uid) {
-    // If the uid is not available, set the user data first
-    await this.authService.SetUserData(this.user);
-  }
-  console.log(this.authService.userData.uid);
   
-this.countCollection();
+    // If the uid is not available, set the user data first
+    // await this.authService.SetUserData(this.user);
+  
+  // console.log(this.authService.userData.uid);
+  
+
 }
 
-async countCollection() {
-  const coll = collection(this.firestore, `users/${this.authService.userData.uid}/customer`);
+async countCollection(useruid) {
+  const coll = collection(this.firestore, `users/${useruid}/customer`);
   const snapshot = await getCountFromServer(coll);
   this.userCount= snapshot.data().count;
 
