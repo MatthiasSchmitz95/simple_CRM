@@ -2,6 +2,12 @@
     height: 100vh;
 }
 
+mat-toolbar-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .sidenav{
 width: 300px;
 }

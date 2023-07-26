@@ -3,6 +3,8 @@ import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angu
 import { User } from 'src/models/user.class';
 import { CrudService } from '../services/crud.service';
 import { Firestore, addDoc, collection } from '@angular/fire/firestore';
+import { AuthService } from '../services/auth.service';
+import { UserData } from '../services/user-data';
 
 
 @Component({
@@ -14,10 +16,8 @@ export class DialogAddUserComponent {
   user = new User();
   birthDate: Date;
   loading = false;
-
-  constructor(public dialog: MatDialog, public crud: CrudService, public firestore: Firestore, public dialogRef: MatDialogRef<DialogAddUserComponent>) {
-
-
+  userData: any;
+  constructor(public dialog: MatDialog, public crud: CrudService, public firestore: Firestore, public dialogRef: MatDialogRef<DialogAddUserComponent>, public authService: AuthService) {
   }
 
   convertDate() {
@@ -26,19 +26,17 @@ export class DialogAddUserComponent {
 
   saveUser() {
     this.loading = true;
-    if(this.user.birthDate != ''){
+    if (this.user.birthDate != '') {
       this.convertDate();
     }
-
-
-    const userRef = collection(this.firestore, 'user');
+    const userRef = collection(this.firestore, `users/${this.authService.userData.uid}/customer`);
     addDoc(userRef, this.user.toJson())
       .then((result: any) => {
         this.loading = false;
-        console.log('user was saved', result);
+        console.log('user was saved', result, this.authService.userData.uid);
         this.closeDialog();
       });
-      
+
   }
 
   closeDialog() {

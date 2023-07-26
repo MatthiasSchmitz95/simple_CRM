@@ -1,0 +1,16 @@
+<mat-card>
+    <button class="pin-upper-right-corner" [matMenuTriggerFor]="menuUser" mat-icon-button>
+        <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menuUser="matMenu">
+        <button mat-menu-item >Edit</button>
+        <button (click)="deleteUser()" mat-menu-item >Delete User</button>
+    </mat-menu>
+    <mat-card-title>
+        Profile Information
+    </mat-card-title>
+    <div>
+        <p>Email: {{userData.email}}</p>
+        <p>Verified: {{userData.emailVerified}}</p>
+    </div>
+</mat-card>

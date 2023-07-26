@@ -3,6 +3,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { User } from 'src/models/user.class';
 import { CrudService } from '../services/crud.service';
 import { Firestore, doc, updateDoc } from '@angular/fire/firestore';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-dialog-edit-user',
@@ -15,11 +16,11 @@ export class DialogEditUserComponent {
   birthDate:Date;
   userId;
 
-  constructor(public dialogRef: MatDialogRef<DialogEditUserComponent>, public crud:CrudService, public firestore: Firestore){}
+  constructor(public dialogRef: MatDialogRef<DialogEditUserComponent>, public crud:CrudService, public firestore: Firestore, public authService:AuthService){}
 
   saveUser() {
     this.loading = true;
-    const userIdRef = doc(this.firestore, 'user', `${this.userId}`);
+    const userIdRef = doc(this.firestore, `users/${this.authService.userData.uid}/customer/${this.userId}`);
     return updateDoc(userIdRef, this.user.toJson())
       .then(() => {
         this.loading = false;

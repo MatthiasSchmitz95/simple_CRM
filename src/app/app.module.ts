@@ -37,6 +37,9 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -50,7 +53,10 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
     DialogEditUserComponent,
     DialogEditAddressComponent,
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
+    ForgotPasswordComponent,
+    VerifyEmailComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -66,6 +72,7 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
     MatFormFieldModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatProgressBarModule,
     FormsModule,
     MatProgressBarModule,
     MatCardModule,

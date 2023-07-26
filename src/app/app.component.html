@@ -1,28 +1,37 @@
 <mat-drawer-container class="mat-drawer-container" autosize>
-  <mat-drawer #drawer class="sidenav" mode="side" [opened]="true">
-    
+  <mat-drawer  #drawer class="sidenav" mode="side" [opened]="authService.isLoggedIn">
     <div class="logo-container">
       LOGO
     </div>
     <ul class="menu-items">
-      <li routerLink="/dashboard"><mat-icon>dashboard</mat-icon> Dashboard</li>
-      <li routerLink="/user"><mat-icon>person</mat-icon> User</li>
+      <li routerLink="/dashboard">
+        <mat-icon>dashboard</mat-icon> Dashboard
+      </li>
+      <li routerLink="/user">
+        <mat-icon>person</mat-icon> User
+      </li>
+      <li routerLink="/profile">
+        <mat-icon>person</mat-icon> Profile
+      </li>
     </ul>
   </mat-drawer>
 
   <div class="example-sidenav-content">
     <mat-toolbar color="primary" class="toolbar">
-      <mat-toolbar-row >
-        <button mat-icon-button (click)="drawer.toggle()">
-          <mat-icon>menu</mat-icon>
-        </button>
-        <span>simple CRM</span>
+      <mat-toolbar-row>
+        <div class="aligned">
+          <button *ngIf="authService.isLoggedIn" mat-icon-button (click)="drawer.toggle()">
+            <mat-icon >menu</mat-icon>
+          </button>
+          <span>simple CRM</span>
+        </div>
+        <button (click)="authService.SignOut()" *ngIf="authService.isLoggedIn" routerLink="/login">Logout</button>
       </mat-toolbar-row>
     </mat-toolbar>
     <div class="router-container">
       <router-outlet></router-outlet>
     </div>
-    
+
 
   </div>
 

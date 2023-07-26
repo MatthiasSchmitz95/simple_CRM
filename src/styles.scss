@@ -17,3 +17,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .p-24{
     padding: 24px !important;
 }
+
+.aligned{
+    display: flex;
+    align-items: center;
+}
+.pin-upper-right-corner{
+    position: absolute !important;
+    right: 0;
+    top: 0;
+}
