@@ -4,6 +4,7 @@ import * as auth from 'firebase/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { UserData } from './user-data';
+import { getAuth } from '@angular/fire/auth';
 
 
 @Injectable({

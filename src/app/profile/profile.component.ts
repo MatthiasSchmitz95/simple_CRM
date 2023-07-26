@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { docData, Firestore, doc } from '@angular/fire/firestore';
+import { docData, Firestore, doc, deleteDoc } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from 'src/models/user.class';
 import { CrudService } from '../crud.service';
@@ -14,7 +15,7 @@ import { UserData } from '../services/user-data';
 export class ProfileComponent implements OnInit {
   userData: UserData;
   user = new User();
-  constructor(public authService: AuthService, public crud: CrudService, public firestore: Firestore) {
+  constructor(public router: Router,public authService: AuthService, public crud: CrudService, public firestore: Firestore) {
 
   }
  async  ngOnInit() {
@@ -33,5 +34,11 @@ export class ProfileComponent implements OnInit {
   getUserById() {
     const userIdRef = doc(this.firestore, `users/${this.authService.userData.uid}`);
     return docData(userIdRef, { idField: 'id' }) as Observable<UserData>;
+  }
+
+  deleteUser() {
+    const userIdRef = doc(this.firestore, `users/${this.authService.userData.uid}`);
+    deleteDoc(userIdRef);
+    this.router.navigateByUrl('/login');
   }
 }
