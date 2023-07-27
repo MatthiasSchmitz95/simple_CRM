@@ -15,19 +15,12 @@ export class DashboardComponent implements OnInit {
   constructor(public crud:CrudService,public  firestore: Firestore, public authService: AuthService){
 
   }
-async ngOnInit(){
+ngOnInit(){
   this.authService.afAuth.authState.subscribe((user) => {
     if (user) {
       this.countCollection(user.uid);
     } 
   });
-
-  
-    // If the uid is not available, set the user data first
-    // await this.authService.SetUserData(this.user);
-  
-  // console.log(this.authService.userData.uid);
-  
 
 }
 

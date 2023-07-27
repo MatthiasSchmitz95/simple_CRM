@@ -18,17 +18,18 @@ export class ProfileComponent implements OnInit {
   constructor(public router: Router,public authService: AuthService, public crud: CrudService, public firestore: Firestore) {
 
   }
- async  ngOnInit() {
-    if (!this.authService.userData.uid) {
-      // If the uid is not available, set the user data first
-      await this.authService.SetUserData(this.user);
-    }
-    this.getUserById()
+ngOnInit() {
+  this.authService.afAuth.authState.subscribe((user) => {
+    if (user) {
+      this.getUserById()
       .subscribe((result) => {
         console.log(result);
         this.userData = result; 
         console.log(this.userData['email'])
       })
+    } 
+  });
+
   }
 
   getUserById() {

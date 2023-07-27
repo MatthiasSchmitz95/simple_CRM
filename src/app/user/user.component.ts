@@ -21,17 +21,15 @@ export class UserComponent implements OnInit {
   }
 
   async ngOnInit() {
-    if (!this.authService.userData.uid) {
-      // If the uid is not available, set the user data first
-      await this.authService.SetUserData(this.user);
-    }
-    this.crud.getUser()
-      .subscribe((result: User[]) => {
-        this.loadedUser = result;
-        console.log(result);
-      })
-
-
+    this.authService.afAuth.authState.subscribe((user) => {
+      if (user) {
+        this.crud.getUser()
+        .subscribe((result: User[]) => {
+          this.loadedUser = result;
+          console.log(result);
+        })
+      } 
+    });
   }
 
   openDialog() {
