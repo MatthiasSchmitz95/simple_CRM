@@ -1,0 +1,10 @@
+.row{
+    display: flex;
+    align-items: center;
+}
+
+mat-form-field{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}

@@ -4,7 +4,7 @@ import { User } from 'src/models/user.class';
 import { CrudService } from '../services/crud.service';
 import { Firestore, addDoc, collection } from '@angular/fire/firestore';
 import { AuthService } from '../services/auth.service';
-import { UserData } from '../services/user-data';
+import { UserData } from '../../models/user-data';
 
 
 @Component({
@@ -21,7 +21,7 @@ export class DialogAddUserComponent {
   }
 
   convertDate() {
-    this.user.birthDate = this.birthDate.getTime();
+    this.user.birthDate = this.user.birthDate.getTime();
   }
 
   saveUser() {

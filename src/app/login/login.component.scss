@@ -1,0 +1,13 @@
+.colored{
+    color: #3f51b5;
+    cursor: pointer;
+}
+
+mat-form-field{
+    width: 300px;
+}
+
+
+  ::ng-deep .custom-border-red{
+    border-color: green !important;
+  }

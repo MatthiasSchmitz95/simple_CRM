@@ -1,7 +1,7 @@
 <mat-drawer-container class="mat-drawer-container" autosize>
   <mat-drawer  #drawer class="sidenav" mode="side" [opened]="authService.isLoggedIn">
     <div class="logo-container">
-      LOGO
+      <img src="assets/Logo/logo.png" alt="">
     </div>
     <ul class="menu-items">
       <li routerLink="/dashboard">
@@ -23,9 +23,9 @@
           <button *ngIf="authService.isLoggedIn" mat-icon-button (click)="drawer.toggle()">
             <mat-icon >menu</mat-icon>
           </button>
-          <span>simple CRM</span>
+          <h1 *ngIf="!authService.isLoggedIn" [ngClass]="{'pl-40': !authService.isLoggedIn}">simple CRM</h1>
         </div>
-        <button (click)="authService.SignOut()" *ngIf="authService.isLoggedIn" routerLink="/login">Logout</button>
+        <button mat-raised-button (click)="authService.SignOut()" *ngIf="authService.isLoggedIn" routerLink="/login">Logout</button>
       </mat-toolbar-row>
     </mat-toolbar>
     <div class="router-container">

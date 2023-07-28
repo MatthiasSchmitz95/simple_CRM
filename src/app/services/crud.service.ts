@@ -13,6 +13,18 @@ export class CrudService {
 
   constructor(public firestore: Firestore, public authService: AuthService) { }
 
+  addUser(user){
+    const userInstance = collection(this.firestore, 'user')
+    addDoc(userInstance, user.toJson())
+    .then(()=> {
+      console.log("User saved");
+    })
+    .catch((e)=>{
+      console.log(e);
+      
+    })
+  }
+
   saveUser() {
     const userRef = collection(this.firestore, `users/${this.authService.userData.uid}/customer`);
     addDoc(userRef, this.user.toJson())

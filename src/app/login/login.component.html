@@ -1,30 +1,33 @@
-<div>
-    <div>
-        <div >
-            <h3>Login</h3>
+
+        <div>
+            <h3 class="mt-32 mb-32">Login</h3>
 
             <mat-form-field class="mr-16" appearance="outline">
                 <mat-label>Email</mat-label>
-                <input matInput type="text"  placeholder="Email" #userName required>
-              </mat-form-field>
-            <div >
+                <input class="custom-border-red" matInput type="text" placeholder="Email" #userName required>
+            </mat-form-field>
+            <div>
                 <mat-form-field class="mr-16" appearance="outline">
                     <mat-label>Password</mat-label>
-                    <input matInput type="password"  placeholder="password" #userPassword required>
-                  </mat-form-field>
+                    <input matInput type="password" placeholder="password" #userPassword required>
+                </mat-form-field>
             </div>
             <!-- Calling SignIn Api from AuthService -->
-            <div >
-                <input mat-raised-button color="primary" type="button" value="Log in"
-                    (click)="authService.SignIn(userName.value, userPassword.value)" />
+            <div>
+                <button class="mr-16" mat-raised-button color="primary" type="button"
+                    (click)="loginCheck(userName.value, userPassword.value)">Login</button>
+
+                    <button mat-raised-button color="primary" type="button"
+                    (click)="loginCheck('guest@trash-mail.com','guestlogin')">Guest Login</button>
+            </div>
+            <div class="mt-32">
+                <span class="colored" routerLink="/password">Forgot Password?</span>
             </div>
             <div>
-                <span routerLink="/forgot-password">Forgot Password?</span>
+                <span>Don't have an account?<span class="colored" routerLink="/sign-up">
+                        Sign Up</span></span>
             </div>
         </div>
-        <div >
-            <span>Don't have an account?<button mat-raised-button color="primary" routerLink="/sign-up">
-                    Sign Up</button></span>
-        </div>
-    </div>
-</div>
+
+
+

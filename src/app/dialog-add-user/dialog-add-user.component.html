@@ -1,5 +1,5 @@
 <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
-<h1 mat-dialog-title>Add User</h1>
+<h3 mat-dialog-title>Add User</h3>
 <div mat-dialog-content>
     <div class="input-container">
         <mat-form-field class="mr-16" appearance="outline">
@@ -17,7 +17,7 @@
     <div>
         <mat-form-field appearance="outline" class="full-width">
             <mat-label>Birth Day</mat-label>
-            <input [disabled]="loading" [(ngModel)]="birthDate" matInput placeholder="Placeholder" matInput [matDatepicker]="picker1">
+            <input [disabled]="loading" [(ngModel)]="user.birthDate" matInput placeholder="Placeholder" matInput [matDatepicker]="picker1">
             <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
             <mat-datepicker #picker1></mat-datepicker>
           </mat-form-field>

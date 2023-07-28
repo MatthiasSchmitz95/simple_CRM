@@ -1,23 +1,27 @@
-<div class="displayTable">
-    <div class="displayTableCell">
+
         <div class="authBlock">
-            <h3>Sign Up</h3>
+            <h3 class="mt-32 mb-32">Sign Up</h3>
+            <mat-form-field class="mr-16" appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput type="text" placeholder="Name" #userName required>
+            </mat-form-field>
+
             <mat-form-field class="mr-16" appearance="outline">
                 <mat-label>Email</mat-label>
-                <input matInput type="text"  placeholder="Email" #userEmail required>
-              </mat-form-field>
-            <div >
+                <input matInput type="text" placeholder="Email" #userEmail required>
+            </mat-form-field>
+            <div>
                 <mat-form-field class="mr-16" appearance="outline">
                     <mat-label>Password</mat-label>
-                    <input matInput type="password"  placeholder="password" #userPwd required>
-                  </mat-form-field>
-            <div class="formGroup">
-                <input type="button" class="btn btnPrimary" value="Sign Up"
-                    (click)="authService.SignUp(userEmail.value, userPwd.value)" />
-            </div>
-            <div class="redirectToLogin">
-                <span>Already have an account?
-                    <button  mat-raised-button color="primary" class="redirect" routerLink="/login">Log In</button></span>
+                    <input matInput type="password" placeholder="password" #userPwd required>
+                </mat-form-field>
+                <div class="formGroup">
+                    <button type="button" mat-raised-button color="primary"
+                        (click)="authService.SignUp(userEmail.value, userPwd.value , userName.value)">Sign Up</button>
+                </div>
+                <div class="mt-32">
+                    <span>Already have an account?
+                        <span class="colored" routerLink="/login">Log In</span></span>
+                </div>
             </div>
         </div>
-    </div>

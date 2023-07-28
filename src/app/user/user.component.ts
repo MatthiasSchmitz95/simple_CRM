@@ -20,7 +20,7 @@ export class UserComponent implements OnInit {
 
   }
 
-  async ngOnInit() {
+ ngOnInit() {
     this.authService.afAuth.authState.subscribe((user) => {
       if (user) {
         this.crud.getUser()

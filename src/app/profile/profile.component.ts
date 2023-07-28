@@ -3,9 +3,9 @@ import { docData, Firestore, doc, deleteDoc } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from 'src/models/user.class';
-import { CrudService } from '../crud.service';
 import { AuthService } from '../services/auth.service';
-import { UserData } from '../services/user-data';
+import { UserData } from '../../models/user-data';
+import { CrudService } from '../services/crud.service';
 
 @Component({
   selector: 'app-profile',
