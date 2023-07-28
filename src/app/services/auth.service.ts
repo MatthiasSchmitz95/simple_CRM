@@ -38,10 +38,11 @@ export class AuthService {
   }
   // Sign in with email/password
     SignIn(email: string, password: string) { 
-      debugger
       return this.afAuth
         .signInWithEmailAndPassword(email, password)
         .then((result) => {
+          console.log(result);
+         // result.user.displayName = this.getUserName();
           this.SetUserData(result.user,this.getUserName());
           this.afAuth.authState.subscribe((user) => {
             if (user) {
