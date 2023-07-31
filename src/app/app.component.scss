@@ -15,7 +15,7 @@ width: 300px;
 .logo-container{
     position: relative;
     min-height: 55px;
-    height: 55px;
+    height: 71px;
     border-bottom:1px solid rgb(0,0,0,0.2);
     display: flex;
     align-items: center;
@@ -32,17 +32,19 @@ width: 300px;
 
 .toolbar{
     min-height: 56px;
-    height: 56px;
+    height: 72px;
 }
 
 .menu-items{
 list-style-type: none;
 padding-left: 0px;
 margin: 0px;
+font-size: 18px;
 
 li{
     padding-left: 16px;
-    height: 48px;
+    height: 40px;
+    margin-top: 16px;
     display: flex;
     align-items: center;
     cursor: pointer;

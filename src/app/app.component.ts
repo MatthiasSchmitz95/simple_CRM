@@ -7,12 +7,20 @@ import { AuthService } from './services/auth.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  userId;
 
 ngOnInit(): void {
-  console.log(this.authService.isLoggedIn);
+  this.authService.afAuth.authState.subscribe((user) => {
+    if (user) {
+      this.userId = this.authService.userData.uid;    
+      console.log('uid is',this.userId)
+    }
+
+   });
   
 }
   title = 'simple_CRM';
 
   constructor(public authService: AuthService) {}
+  
 }

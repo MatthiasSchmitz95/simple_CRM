@@ -26,7 +26,8 @@ export class LoginComponent implements OnInit {
         window.alert(error.message);
         this.userName.nativeElement.classList.add('custom-border-red');
         this.userPassword.nativeElement.classList.add('custom-border-red');
-      });
+      }
+      );
 
 
   }

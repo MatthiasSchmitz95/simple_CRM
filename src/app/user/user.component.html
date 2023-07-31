@@ -1,15 +1,15 @@
 <app-search></app-search>
-<mat-card>
+<mat-card *ngIf="!this.search.search">
   <table class="user-table">
     <tr>
-      <td>Name</td>
-      <td>Email</td>
-      <td>City</td>
+      <td><b> Name</b></td>
+      <td><b> Email</b></td>
+      <td><b> City</b></td>
     </tr>
-    <tr *ngFor="let user of loadedUser" [routerLink]="['/user/' + user.id]">
-      <td>{{user.firstName}} {{user.lastName}}</td>
-      <td>{{user.email}}</td>
-      <td>{{user.city}}</td>
+    <tr *ngFor="let customer of loadedUser" [routerLink]="'/user/' + user.Id + '/' + customer.id">
+      <td>{{customer.firstName}} {{user.lastName}}</td>
+      <td>{{customer.email}}</td>
+      <td>{{customer.city}}</td>
     </tr>
   </table>
 </mat-card>
