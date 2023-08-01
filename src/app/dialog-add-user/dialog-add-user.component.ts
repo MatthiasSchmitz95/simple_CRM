@@ -31,7 +31,7 @@ export class DialogAddUserComponent {
     const month = this.user.birthDate.getMonth() + 1;
     const day = this.user.birthDate.getDate();
     const year = this.user.birthDate.getFullYear();
-    this.user.birthDate = `${month}/${day}/${year}`;
+    this.birthDay = `${month}/${day}/${year}`;
   }
 
   saveUser() {

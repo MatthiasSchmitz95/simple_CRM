@@ -24,37 +24,44 @@ export class SearchComponent {
 cancleSearch(){
   this.search.search = false;
   this.searchParams.firstName= null;
+  this.searchParams.city= null;
+  this.searchParams.email= null;
 }
 
-  onSearchUser() {
+  onSearchCustomer() {
     this.search.search = true;
     this.customer = [];
     const userDocRef = this.afsCompact.collection('users').doc(`${this.authService.userData.uid}`);
+    
     const $name = userDocRef
       .collection('customer', (ref) =>
-        ref.where('firstName'|| 'lastName', '==', this.searchParams.firstName)
+        ref.where('firstName', '>=', this.searchParams.firstName)
+           .where('firstName', '<=', this.searchParams.firstName + '\uf8ff')
       )
       .valueChanges({ idField: 'id' });
-
+  
     const $email = userDocRef
       .collection('customer', (ref) =>
-        ref.where('email', '==', this.searchParams.email)
+        ref.where('email', '>=', this.searchParams.email)
+           .where('email', '<=', this.searchParams.email + '\uf8ff')
       )
       .valueChanges({ idField: 'id' });
-
+  
     const $city = userDocRef
       .collection('customer', (ref) =>
-        ref.where('city', '==', this.searchParams.city)
+        ref.where('city', '>=', this.searchParams.city)
+           .where('city', '<=', this.searchParams.city + '\uf8ff')
       )
       .valueChanges({ idField: 'id' });
-
+  
     combineLatest([$name, $email, $city])
       .pipe(map(([one, two, three]) => [...one, ...two, ...three]))
       .subscribe((response: any) => {
         this.customer = response;
         console.log('Gefunden', this.customer);
-
+  
         if (response.length > 0) {
+          // Perform necessary actions when the search returns results
         } else {
           this.isSearchEmpty = true;
         }

@@ -13,9 +13,25 @@
             <img src="assets/profile-img.png" alt="">
         </div>
         <div class="header-info">
-            <h2>{{user.firstName}} {{user.lastName}}</h2>
-            <p>{{user.email}}</p>
-            <p>{{user.phone}}</p>
+            <div class="flex">
+                <h2 id="name">{{user.firstName}} {{user.lastName}}</h2>
+            </div>
+            <div class="flex">
+                <p class="mr-16">email:</p>
+                <p id="email">{{user.email}}</p>
+                <mat-icon class="wh-18" (click)="copyToClipboard('name')">file_copy</mat-icon>
+            </div>
+            <div class="flex">
+                <p class="mr-16">phone:</p>
+                <p id="phone">{{user.phone}}</p>
+                <mat-icon class="wh-18" (click)="copyToClipboard('name')">file_copy</mat-icon>
+            </div>
+            <div class="flex">
+                <p class="mr-16">birthdate:</p>
+                <p id="bDate">{{bDate}}</p>
+                <mat-icon class="wh-18" (click)="copyToClipboard('bDate')">file_copy</mat-icon>
+            </div>
+
         </div>
     </div>
 </mat-card>
@@ -30,16 +46,16 @@
         <button mat-menu-item (click)="openEdit()">Edit</button>
         <button [routerLink]="['/user' + userId]" mat-menu-item (click)="deleteUser()">Delete User</button>
     </mat-menu>
-    <mat-card-title>Address</mat-card-title>
+    <mat-card-title class="mb-16">Address</mat-card-title>
     <p>{{user.street}}</p>
     <p>{{user.zipCode}} {{user.city}}</p>
 </mat-card>
 
 <mat-card class="mt-32 p-24">
-    <mat-card-title>Notes</mat-card-title>
+    <mat-card-title class="mb-16">Notes</mat-card-title>
     <mat-form-field>
         <mat-label>Textarea</mat-label>
         <textarea matInput></textarea>
-      </mat-form-field>
-      <button mat-raised-button color="primary">Primary</button>
+    </mat-form-field>
+    <button mat-raised-button color="primary">Save</button>
 </mat-card>

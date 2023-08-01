@@ -58,8 +58,8 @@ export class CrudService {
 
   }
 
-  deleteUser(userId) {
-    const userIdRef = doc(this.firestore, `users/${this.authService.userData.uid}/customer/${userId}`);
+  deleteUser(Id) {
+    const userIdRef = doc(this.firestore, `users/${this.authService.userData.uid}/customer/${Id}`);
     return deleteDoc(userIdRef);
   }
 
