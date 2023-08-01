@@ -29,7 +29,8 @@ export class User {
             street: this.street,
             zipCode: this.zipCode,
             city: this.city,
-            email:this.email
+            email:this.email,
+            phone:this.phone
 
         }
 

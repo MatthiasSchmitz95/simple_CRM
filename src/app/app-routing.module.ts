@@ -14,7 +14,7 @@ import { VerifyEmailComponent } from './verify-email/verify-email.component';
 const routes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'dashboard/:userId', component: DashboardComponent, canActivate: [AuthGuard]},
-  {path: 'user/:userId', component: UserComponent, canActivate: [AuthGuard]},
+  {path: 'user', component: UserComponent, canActivate: [AuthGuard]},
   {path: 'user/:userId/:id', component: UserDetailsComponent},
   {path: 'login', component: LoginComponent},
   {path: 'sign-up', component: SignUpComponent},

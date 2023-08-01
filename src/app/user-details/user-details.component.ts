@@ -17,32 +17,27 @@ import { AuthService } from '../services/auth.service';
 
 })
 export class UserDetailsComponent implements OnInit {
-  userId;
+  userId = '';
   user = new User();
   customerId;
 
   constructor(private route: ActivatedRoute, private crud: CrudService, public authService: AuthService, public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.authService.afAuth.authState.subscribe((user) => {
-      if (user) {
-        this.userId = this.authService.userData.uid; 
-        console.log('first id is',this.userId)
-      } 
-    });
 
     this.route.paramMap.subscribe(paramMap => {
-      this.customerId = paramMap.get(':id');
+      this.customerId = paramMap.get('id');
       console.log('ID is', this.customerId);
       this.getUserById(this.customerId);
     })
   }
 
   getUserById(userId) {
+
     const userArr = this.crud.getUserById(userId);
     userArr.subscribe((user) => {
       this.user = new User(user);
-      console.log(this.user);
+      this.user.birthDate = this.user.birthDate.toDate();
     })
 
   }
@@ -54,13 +49,13 @@ export class UserDetailsComponent implements OnInit {
   openEdit() {
     const dialog = this.dialog.open(DialogEditAddressComponent);
     dialog.componentInstance.user = new User(this.user.toJson());
-    dialog.componentInstance.userId = this.userId;
+    dialog.componentInstance.userId = this.customerId;
   }
 
   openEditUser() {
     const dialog = this.dialog.open(DialogEditUserComponent);
     dialog.componentInstance.user = new User(this.user.toJson());
-    dialog.componentInstance.userId = this.userId;
+    dialog.componentInstance.userId = this.customerId;
 
   }
 

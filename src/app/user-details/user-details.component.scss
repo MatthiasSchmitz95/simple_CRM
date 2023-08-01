@@ -19,6 +19,7 @@
     align-items: center;
     justify-content: center;
     border: 1px solid white;
+    
 
     img{
         width: 50px;
@@ -27,6 +28,7 @@
 
 .card-content{
     display: flex;
+    align-items: center;
 }
 
 .header-info{

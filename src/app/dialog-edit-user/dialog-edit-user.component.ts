@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { User } from 'src/models/user.class';
 import { CrudService } from '../services/crud.service';
@@ -10,13 +10,17 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './dialog-edit-user.component.html',
   styleUrls: ['./dialog-edit-user.component.scss']
 })
-export class DialogEditUserComponent {
+export class DialogEditUserComponent implements OnInit {
   user: User;
   loading = false;
   birthDate:Date;
   userId;
 
   constructor(public dialogRef: MatDialogRef<DialogEditUserComponent>, public crud:CrudService, public firestore: Firestore, public authService:AuthService){}
+
+ngOnInit(){
+
+}
 
   saveUser() {
     this.loading = true;

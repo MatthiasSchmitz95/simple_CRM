@@ -17,7 +17,7 @@
     <div>
         <mat-form-field appearance="outline" class="full-width">
             <mat-label>Birth Day</mat-label>
-            <input [disabled]="loading" [(ngModel)]="user.birthDate.seconds" matInput placeholder="Placeholder" matInput [matDatepicker]="picker1">
+            <input [disabled]="loading" [(ngModel)]="user.birthDate" matInput placeholder="Placeholder" matInput [matDatepicker]="picker1">
             <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
             <mat-datepicker #picker1></mat-datepicker>
           </mat-form-field>
@@ -28,6 +28,14 @@
       <input [disabled]="loading" [(ngModel)]="user.email" matInput placeholder="Placeholder">
       <mat-datepicker #picker1></mat-datepicker>
     </mat-form-field>
+</div>
+
+<div>
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Phone</mat-label>
+    <input [disabled]="loading" [(ngModel)]="user.phone" matInput placeholder="Placeholder">
+    <mat-datepicker #picker1></mat-datepicker>
+  </mat-form-field>
 </div>
 
 
