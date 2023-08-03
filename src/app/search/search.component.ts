@@ -10,7 +10,7 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent {
-  user: User[] = [];
+  users: User[] = [];
   isSearchEmpty: boolean;
   searchParams = {
     firstName: null,
@@ -23,7 +23,7 @@ export class SearchComponent {
 
   }
   onSearchUser() {
-    this.user = [];
+    this.users = [];
     const userDocRef = this.afsCompact.collection('users').doc(`${this.authService.userData.uid}`);
     const $name = userDocRef
       .collection('customer', (ref) =>
@@ -46,8 +46,8 @@ export class SearchComponent {
     combineLatest([$name, $email, $city])
       .pipe(map(([one, two, three]) => [...one, ...two, ...three]))
       .subscribe((response: any) => {
-        this.user = response;
-        console.log(this.user);
+        this.users = response;
+        console.log(this.users);
         
         if (response.length > 0) {
         } else {

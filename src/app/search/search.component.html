@@ -24,7 +24,7 @@
         <button type="button" mat-raised-button color="primary" (click)="onSearchUser()">Search</button>
     </div>
 </div>
-<section *ngIf="user">
+<section *ngIf="users">
     <table class="table table-striped">
         <thead>
             <tr>
@@ -35,11 +35,11 @@
         </thead>
         <div *ngIf="!isSearchEmpty; else noSearch">
             <tbody>
-                <tr *ngFor="let book of books; index as i">
+                <tr *ngFor="let user of users; index as i">
                     <th scope="row">{{ i + 1 }}</th>
-                    <td>{{ book.name }}</td>
-                    <td>{{ book.email }}</td>
-                    <td>{{ book.city }}</td>
+                    <td>{{ user.firstName }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.city }}</td>
                 </tr>
             </tbody>
         </div>

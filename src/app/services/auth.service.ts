@@ -28,6 +28,7 @@ export class AuthService {
     this.afAuth.authState.subscribe((user) => {
       if (user) {
         this.userData = user;
+        console.log('userData is',this.userData);
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user')!);
       } else {
@@ -42,7 +43,7 @@ export class AuthService {
         .signInWithEmailAndPassword(email, password)
         .then((result) => {
           console.log(result);
-         // result.user.displayName = this.getUserName();
+        // result.user.displayName = this.getUserName();
           this.SetUserData(result.user,this.getUserName());
           this.afAuth.authState.subscribe((user) => {
             if (user) {
@@ -54,7 +55,7 @@ export class AuthService {
     }
 
     getUserName(){
-      let userRef = doc(this.firestore, 'users', `${this.userId}`);
+      let userRef = doc(this.firestore, 'users', `${this.userData.uid}`);
       let docRef = docData(userRef, {idField :'id'});
       let name = docRef['displayName'];
       return name
