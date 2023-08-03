@@ -1,60 +1,68 @@
 <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
 <h3 mat-dialog-title>Add User</h3>
 <div mat-dialog-content>
-    <div class="input-container">
-        <mat-form-field class="mr-16" appearance="outline">
-            <mat-label>First name</mat-label>
-            <input [disabled]="loading" [(ngModel)]="user.firstName" matInput placeholder="Placeholder">
-          </mat-form-field>
+  <div class="input-container">
+    <mat-form-field class="mr-16" appearance="outline">
+      <mat-label>First name</mat-label>
+      <input [disabled]="loading" [(ngModel)]="user.firstName" matInput placeholder="First name">
+    </mat-form-field>
 
-          <mat-form-field appearance="outline">
-            <mat-label>Last name</mat-label>
-            <input [disabled]="loading" [(ngModel)]="user.lastName" matInput placeholder="Placeholder">
-          </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Last name</mat-label>
+      <input [disabled]="loading" [(ngModel)]="user.lastName" matInput placeholder="Last name">
+    </mat-form-field>
 
-    </div>
+  </div>
 
-    <div>
-        <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Birth Day</mat-label>
-            <input [disabled]="loading" [(ngModel)]="user.birthDate" matInput placeholder="Placeholder" matInput [matDatepicker]="picker1">
-            <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
-            <mat-datepicker #picker1></mat-datepicker>
-          </mat-form-field>
-    </div>
-<div>
+  <div>
     <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Email</mat-label>
-      <input [disabled]="loading" [(ngModel)]="user.email" matInput placeholder="Placeholder">
+      <mat-label>Birth Day</mat-label>
+      <input [disabled]="loading" [(ngModel)]="user.birthDate" matInput placeholder="DD/MM/JJJJ" matInput
+        [matDatepicker]="picker1">
+      <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
       <mat-datepicker #picker1></mat-datepicker>
     </mat-form-field>
-</div>
+  </div>
+  <div>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email</mat-label>
+      <input [disabled]="loading" [(ngModel)]="user.email" matInput placeholder="Email">
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Phone</mat-label>
+      <input [disabled]="loading" [(ngModel)]="user.phone" matInput placeholder="Phone">
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+  </div>
 
-    <div>
-        <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Street + No.</mat-label>
-            <input [disabled]="loading" [(ngModel)]="user.street" matInput placeholder="Placeholder">
-          </mat-form-field>
+  <div>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Street + No.</mat-label>
+      <input [disabled]="loading" [(ngModel)]="user.street" matInput placeholder="Street + No.">
+    </mat-form-field>
 
-    </div>
+  </div>
 
-    <div>
+  <div>
 
 
-          <mat-form-field appearance="outline" class="mr-16">
-            <mat-label>Zup Code</mat-label>
-            <input [disabled]="loading" [(ngModel)]="user.zipCode" matInput placeholder="Placeholder">
-          </mat-form-field>
+    <mat-form-field appearance="outline" class="mr-16">
+      <mat-label>Zup Code</mat-label>
+      <input [disabled]="loading" [(ngModel)]="user.zipCode" matInput placeholder="Placeholder">
+    </mat-form-field>
 
-          <mat-form-field appearance="outline">
-            <mat-label>City</mat-label>
-            <input [disabled]="loading" [(ngModel)]="user.city" matInput placeholder="Placeholder">
-          </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>City</mat-label>
+      <input [disabled]="loading" [(ngModel)]="user.city" matInput placeholder="Placeholder">
+    </mat-form-field>
 
-    </div>
+  </div>
 
 </div>
 <div mat-dialog-actions class="p-24">
-  <button [disabled]="loading" mat-button (click)="closeDialog()" >Cancle</button>
-  <button [disabled]="loading" mat-button (click)="saveUser()"  cdkFocusInitial>Save</button>
+  <button [disabled]="loading" mat-button (click)="closeDialog()">Cancle</button>
+  <button [disabled]="loading" mat-button (click)="saveUser()" cdkFocusInitial>Save</button>
 </div>

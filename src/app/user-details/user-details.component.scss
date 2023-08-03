@@ -19,6 +19,7 @@
     align-items: center;
     justify-content: center;
     border: 1px solid white;
+    
 
     img{
         width: 50px;
@@ -27,6 +28,7 @@
 
 .card-content{
     display: flex;
+    align-items: center;
 }
 
 .header-info{
@@ -39,7 +41,24 @@
 
 }
 
+h2{
+    margin-bottom: 15px !important;
+}
+
 p{
     margin: 0;
+    margin-bottom: 10px;
+}
+
+button{
+    width :60px;
+}
+
+.wh-18{
+    margin-left: 16px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+
 }
 

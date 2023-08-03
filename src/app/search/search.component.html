@@ -1,49 +1,49 @@
-<h4>Search firbase record</h4>
-<div class="row">
+<div class="row mb-32">
 
     <mat-form-field class="mr-16" appearance="outline">
         <mat-label>Name</mat-label>
         <input matInput type="text" name="firstName" #name="ngModel" [(ngModel)]="searchParams.firstName"
-            placeholder="Name" required />
+            placeholder="Name" />
     </mat-form-field>
 
     <mat-form-field class="mr-16" appearance="outline">
         <mat-label>Email</mat-label>
-        <input matInput type="text" name="email" #email="ngModel" [(ngModel)]="searchParams.email" placeholder="Email"
-            required />
+        <input matInput type="text" name="email" #email="ngModel" [(ngModel)]="searchParams.email"
+            placeholder="Email" />
     </mat-form-field>
 
 
 
     <mat-form-field class="mr-16" appearance="outline">
         <mat-label>City</mat-label>
-        <input matInput type="text" name="city" #city="ngModel" [(ngModel)]="searchParams.city" placeholder="City"
-            required />
+        <input matInput type="text" name="city" #city="ngModel" [(ngModel)]="searchParams.city" placeholder="City" />
     </mat-form-field>
     <div>
-        <button type="button" mat-raised-button color="primary" (click)="onSearchUser()">Search</button>
+        <button *ngIf="!this.search.search" type="button" mat-raised-button color="primary"
+            (click)="onSearchCustomer()">Search</button>
+        <button *ngIf="this.search.search" type="button" mat-raised-button color="primary"
+            (click)="cancleSearch()">Cancle</button>
     </div>
 </div>
-<section *ngIf="users">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">City</th>
-            </tr>
-        </thead>
-        <div *ngIf="!isSearchEmpty; else noSearch">
-            <tbody>
-                <tr *ngFor="let user of users; index as i">
-                    <th scope="row">{{ i + 1 }}</th>
-                    <td>{{ user.firstName }}</td>
-                    <td>{{ user.email }}</td>
-                    <td>{{ user.city }}</td>
-                </tr>
-            </tbody>
-        </div>
+
+<mat-card *ngIf="this.search.search">
+    <table class="user-table full-width">
+        <tr>
+            <td>Name</td>
+            <td>Email</td>
+            <td>City</td>
+        </tr>
+
+        <div *ngIf="!isSearchEmpty; else noSearch" class="mr-16"></div>
+
+        <tr *ngFor="let customer of customer; index as i" [routerLink]="['/user/' + customer.id]">
+            <td>{{ customer.firstName }} {{ customer.lastName }}</td>
+            <td>{{ customer.email }}</td>
+            <td>{{ customer.city }}</td>
+        </tr>
+
+
     </table>
 
     <ng-template #noSearch> Search result not found ! </ng-template>
-</section>
+</mat-card>

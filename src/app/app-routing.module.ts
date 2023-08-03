@@ -13,13 +13,13 @@ import { VerifyEmailComponent } from './verify-email/verify-email.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
-  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+  {path: 'dashboard/:userId', component: DashboardComponent, canActivate: [AuthGuard]},
   {path: 'user', component: UserComponent, canActivate: [AuthGuard]},
-  {path: 'user/::id', component: UserDetailsComponent},
+  {path: 'user/:userId/:id', component: UserDetailsComponent},
   {path: 'login', component: LoginComponent},
   {path: 'sign-up', component: SignUpComponent},
   {path: 'password', component: ForgotPasswordComponent},
-  {path: 'profile', component: ProfileComponent},
+  {path: 'profile/:userId', component: ProfileComponent},
   {path: 'verify-email-address', component: VerifyEmailComponent }
 ];
 

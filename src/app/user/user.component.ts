@@ -4,6 +4,7 @@ import { User } from 'src/models/user.class';
 import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
 import { AuthService } from '../services/auth.service';
 import { CrudService } from '../services/crud.service';
+import { SearchServiceService } from '../services/search-service.service';
 
 @Component({
   selector: 'app-user',
@@ -14,20 +15,23 @@ export class UserComponent implements OnInit {
   user = new User();
   loadedUser = [];
   userData: any;
+  userId;
 
 
-  constructor(public dialog: MatDialog, private crud: CrudService, public authService: AuthService) {
+  constructor(public dialog: MatDialog, private crud: CrudService, public authService: AuthService, public search:SearchServiceService) {
 
   }
 
  ngOnInit() {
     this.authService.afAuth.authState.subscribe((user) => {
       if (user) {
+        this.userId = this.authService.userData.uid; 
         this.crud.getUser()
         .subscribe((result: User[]) => {
           this.loadedUser = result;
-          console.log(result);
-        })
+          console.log('customer data',result,user);
+        });
+
       } 
     });
   }

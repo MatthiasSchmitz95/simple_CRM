@@ -5,6 +5,11 @@ import { CrudService } from '../services/crud.service';
 import { Firestore, addDoc, collection } from '@angular/fire/firestore';
 import { AuthService } from '../services/auth.service';
 import { UserData } from '../../models/user-data';
+import { Timestamp } from 'firebase/firestore';
+
+
+
+
 
 
 @Component({
@@ -14,26 +19,32 @@ import { UserData } from '../../models/user-data';
 })
 export class DialogAddUserComponent {
   user = new User();
-  birthDate: Date;
+  birthDate;
+  birthDay;
   loading = false;
   userData: any;
   constructor(public dialog: MatDialog, public crud: CrudService, public firestore: Firestore, public dialogRef: MatDialogRef<DialogAddUserComponent>, public authService: AuthService) {
   }
 
   convertDate() {
-    this.user.birthDate = this.user.birthDate.getTime();
+    this.birthDay = this.user.birthDate.getTime();  
+    const month = this.user.birthDate.getMonth() + 1;
+    const day = this.user.birthDate.getDate();
+    const year = this.user.birthDate.getFullYear();
+    this.birthDay = `${month}/${day}/${year}`;
   }
 
   saveUser() {
     this.loading = true;
-    if (this.user.birthDate != '') {
-      this.convertDate();
-    }
+    console.log(this.user.birthDate);
+    
+    //if (this.user.birthDate != '') {
+    //  this.convertDate();
+    //}
     const userRef = collection(this.firestore, `users/${this.authService.userData.uid}/customer`);
     addDoc(userRef, this.user.toJson())
-      .then((result: any) => {
+      .then(() => {
         this.loading = false;
-        console.log('user was saved', result, this.authService.userData.uid);
         this.closeDialog();
       });
 
