@@ -19,7 +19,10 @@
   <div class="example-sidenav-content">
     <mat-toolbar color="primary" class="toolbar">
       <mat-toolbar-row>
-        <div class="aligned">
+        <div class="logo-container mobile-logo">
+          <img src="assets/Logo/logo.png" alt="">
+        </div>
+        <div class="aligned desktop">
           <button *ngIf="authService.isLoggedIn" mat-icon-button (click)="drawer.toggle()">
             <mat-icon >menu</mat-icon>
           </button>
@@ -32,7 +35,7 @@
       <router-outlet></router-outlet>
     </div>
 
-
+    <app-mobile-navbar class="bottom"></app-mobile-navbar>
   </div>
-
+  
 </mat-drawer-container>

@@ -14,6 +14,14 @@
 
   </div>
 
+  <div class="mb-22-4">
+    <mat-radio-group [disabled]="loading" [(ngModel)]="user.gender" aria-label="Select an option">
+      <mat-radio-button value="male">male</mat-radio-button>
+      <mat-radio-button value="female">female</mat-radio-button>
+      <mat-radio-button value="divers">divers</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
   <div>
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Birth Day</mat-label>

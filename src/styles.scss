@@ -38,6 +38,10 @@ h3{
 .mb-32{
     margin-bottom: 32px !important;
 }
+.mb-22-4{
+    margin-bottom: 22.4px;
+}
+
 .mb-16{
     margin-bottom: 16px !important;
 }
@@ -53,6 +57,11 @@ h3{
 .aligned{
     display: flex;
     align-items: center;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
 }
 .pin-upper-right-corner{
     position: absolute !important;

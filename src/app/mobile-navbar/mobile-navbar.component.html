@@ -1,0 +1,11 @@
+<ul class="menu-items" *ngIf="this.authService.isLoggedIn">
+    <li routerLink="/dashboard/{{userId}}" (click)="select('dashboard')">
+      <mat-icon id="dashboard">dashboard</mat-icon> Dashboard
+    </li>
+    <li routerLink="/user" (click)="select('user')">
+      <mat-icon id="user">person</mat-icon> User
+    </li>
+    <li routerLink="/profile/{{userId}}" (click)="select('account')">
+      <mat-icon id="account">account_circle</mat-icon> Profile
+    </li>
+  </ul>

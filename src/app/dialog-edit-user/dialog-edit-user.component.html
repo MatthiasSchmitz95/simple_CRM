@@ -11,7 +11,14 @@
       <mat-label>Last name</mat-label>
       <input [disabled]="loading" [(ngModel)]="user.lastName" matInput placeholder="Placeholder">
     </mat-form-field>
-
+  </div>
+  
+  <div class="mb-22-4">
+    <mat-radio-group [disabled]="loading" [(ngModel)]="user.gender" aria-label="Select an option">
+      <mat-radio-button value="male">male</mat-radio-button>
+      <mat-radio-button value="female">female</mat-radio-button>
+      <mat-radio-button value="divers">divers</mat-radio-button>
+    </mat-radio-group>
   </div>
 
   <div>

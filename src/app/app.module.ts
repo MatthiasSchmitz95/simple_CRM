@@ -41,6 +41,10 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SearchComponent } from './search/search.component';
+import {MatRadioModule} from '@angular/material/radio';
+import { CustomerChartComponent } from './customer-chart/customer-chart.component';
+import { MobileNavbarComponent } from './mobile-navbar/mobile-navbar.component';
+
 
 
 
@@ -58,7 +62,9 @@ import { SearchComponent } from './search/search.component';
     ForgotPasswordComponent,
     VerifyEmailComponent,
     ProfileComponent,
-    SearchComponent
+    SearchComponent,
+    CustomerChartComponent,
+    MobileNavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -79,6 +85,7 @@ import { SearchComponent } from './search/search.component';
     MatProgressBarModule,
     MatCardModule,
     MatMenuModule,
+    MatRadioModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),

@@ -64,3 +64,44 @@ li{
     padding-right: 56px;
     padding-left: 56px;
 }
+
+.bottom{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: none;
+    z-index: 3;
+}
+
+@media(max-width:750px){
+    .sidenav{
+        display: none;
+    }
+
+    .desktop{
+        display: none;
+        
+    }
+    .mat-toolbar.mat-primary {
+        background-color: #212747;
+    }
+
+    .mobile-logo{
+        width: 200px;
+        border: none;
+    }
+
+    .router-container{
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .toolbar{
+        height: 56px;
+    }
+
+    .bottom{
+        display: flex;
+    }
+}

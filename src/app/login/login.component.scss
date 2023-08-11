@@ -11,3 +11,9 @@ mat-form-field{
   ::ng-deep .custom-border-red{
     border-color: green !important;
   }
+
+  @media(max-width:750px){
+    .mobile{
+      padding-left:16px;
+    }
+  }

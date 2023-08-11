@@ -1,0 +1,27 @@
+.menu-items{
+    padding: 0;
+    list-style-type: none;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    background: #212747;
+    margin: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: white;
+
+    li{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+
+        &:hover{
+            color:#76D3FB;
+        }
+    }
+}
+
+.teal{
+    color:#76D3FB;
+}

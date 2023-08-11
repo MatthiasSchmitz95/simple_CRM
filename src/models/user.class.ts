@@ -5,10 +5,11 @@ export class User {
     street: string;
     zipCode: number;
     city: string;
-    email:string;
-    phone:number;
+    email: string;
+    phone: number;
+    gender: string;
 
-    constructor(obj?: any){
+    constructor(obj?: any) {
         this.firstName = obj ? obj.firstName : '';
         this.lastName = obj ? obj.lastName : '';
         this.birthDate = obj ? obj.birthDate : '';
@@ -17,20 +18,22 @@ export class User {
         this.city = obj ? obj.city : '';
         this.email = obj ? obj.email : '';
         this.phone = obj ? obj.phone : '';
+        this.gender = obj ? obj.gender : '';
 
 
     }
 
-    public toJson(){
-        return{
+    public toJson() {
+        return {
             firstName: this.firstName,
-            lastName:this.lastName,
+            lastName: this.lastName,
             birthDate: this.birthDate,
             street: this.street,
             zipCode: this.zipCode,
             city: this.city,
-            email:this.email,
-            phone:this.phone
+            email: this.email,
+            phone: this.phone,
+            gender: this.gender
 
         }
 
