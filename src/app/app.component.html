@@ -3,6 +3,7 @@
     <div class="logo-container">
       <img src="assets/Logo/logo.png" alt="">
     </div>
+
     <ul class="menu-items">
       <li routerLink="/dashboard/{{userId}}">
         <mat-icon>dashboard</mat-icon> Dashboard
@@ -12,6 +13,15 @@
       </li>
       <li routerLink="/profile/{{userId}}">
         <mat-icon>account_circle</mat-icon> Profile
+      </li>
+    </ul>
+
+    <ul class="menu-items mt-231">
+      <li routerLink="/imprint">
+        <mat-icon>list_alt_icon</mat-icon> Imprint
+      </li>
+      <li routerLink="/private-policy">
+        <mat-icon>security</mat-icon> Private policy
       </li>
     </ul>
   </mat-drawer>

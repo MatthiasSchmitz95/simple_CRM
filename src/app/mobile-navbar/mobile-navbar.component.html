@@ -1,11 +1,17 @@
 <ul class="menu-items" *ngIf="this.authService.isLoggedIn">
-    <li routerLink="/dashboard/{{userId}}" (click)="select('dashboard')">
-      <mat-icon id="dashboard">dashboard</mat-icon> Dashboard
+    <li id="dashboard" routerLink="/dashboard/{{userId}}" (click)="select('dashboard')">
+      <mat-icon >dashboard</mat-icon> Dashboard
     </li>
-    <li routerLink="/user" (click)="select('user')">
-      <mat-icon id="user">person</mat-icon> User
+    <li id="user" routerLink="/user" (click)="select('user')">
+      <mat-icon >person</mat-icon> User
     </li>
-    <li routerLink="/profile/{{userId}}" (click)="select('account')">
-      <mat-icon id="account">account_circle</mat-icon> Profile
+    <li id="account" routerLink="/profile/{{userId}}" (click)="select('account')">
+      <mat-icon >account_circle</mat-icon> Profile
+    </li>
+    <li id="imprint" routerLink="/imprint" (click)="select('imprint')">
+      <mat-icon >list_alt_icon</mat-icon> Imprint
+    </li>
+    <li id="policy" routerLink="/private-policy" (click)="select('policy')">
+      <mat-icon >security</mat-icon> Policy
     </li>
   </ul>

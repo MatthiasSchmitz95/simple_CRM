@@ -30,6 +30,8 @@ export class MobileNavbarComponent implements OnInit {
     document.getElementById('account').classList.remove('teal');
     document.getElementById('user').classList.remove('teal');
     document.getElementById('dashboard').classList.remove('teal');
+    document.getElementById('imprint').classList.remove('teal');
+    document.getElementById('policy').classList.remove('teal');
 
   }
 

@@ -44,6 +44,8 @@ import { SearchComponent } from './search/search.component';
 import {MatRadioModule} from '@angular/material/radio';
 import { CustomerChartComponent } from './customer-chart/customer-chart.component';
 import { MobileNavbarComponent } from './mobile-navbar/mobile-navbar.component';
+import { ImprintComponent } from './imprint/imprint.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 
 
 
@@ -64,7 +66,9 @@ import { MobileNavbarComponent } from './mobile-navbar/mobile-navbar.component';
     ProfileComponent,
     SearchComponent,
     CustomerChartComponent,
-    MobileNavbarComponent
+    MobileNavbarComponent,
+    ImprintComponent,
+    PrivacyPolicyComponent
   ],
   imports: [
     BrowserModule,
