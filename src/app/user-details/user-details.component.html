@@ -51,11 +51,27 @@
     <p>{{user.zipCode}} {{user.city}}</p>
 </mat-card>
 
+<div class="mt-32" *ngIf="filledNotes">
+    <mat-card>
+        <mat-card-title class="mb-16 title ">Notes</mat-card-title>
+        <ul>
+            <li *ngFor="let note of existingNotes; let i = index">
+             <div class="note-text li-row">
+               <p class="mr-90">{{ note }}</p> 
+              <button class="note-item-button" mat-raised-button color="warn" (click)="deleteNote(i)">X</button>
+             </div>
+
+            </li>
+          </ul>
+    </mat-card>
+
+  </div>
+
 <mat-card class="mt-32 p-24 mobile-mb-100">
-    <mat-card-title class="mb-16">Notes</mat-card-title>
+    <mat-card-title class="mb-16">Write note</mat-card-title>
     <mat-form-field>
         <mat-label>Textarea</mat-label>
-        <textarea matInput></textarea>
+        <textarea id="notes" [(ngModel)]="newNote" matInput></textarea>
     </mat-form-field>
-    <button mat-raised-button color="primary">Save</button>
+    <button class="save-button" (click)="pushNote()" mat-raised-button color="primary">Save</button>
 </mat-card>

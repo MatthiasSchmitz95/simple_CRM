@@ -18,11 +18,11 @@
         <mat-label>City</mat-label>
         <input matInput type="text" name="city" #city="ngModel" [(ngModel)]="searchParams.city" placeholder="City" />
     </mat-form-field>
-    <div>
-        <button *ngIf="!this.search.search" type="button" mat-raised-button color="primary"
+    <div class="button-container">
+        <button  type="button" mat-raised-button color="primary"
             (click)="onSearchCustomer()">Search</button>
         <button *ngIf="this.search.search" type="button" mat-raised-button color="primary"
-            (click)="cancleSearch()">Cancle</button>
+            (click)="cancleSearch()">Cancel</button>
     </div>
 </div>
 

@@ -11,3 +11,10 @@ mat-form-field{
     display: flex;
     flex-direction: column;
 }
+
+
+@media(max-width:750px){
+    .content-container{
+        padding: 0 16px;
+    }
+}

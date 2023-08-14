@@ -8,6 +8,7 @@ export class User {
     email: string;
     phone: number;
     gender: string;
+    notes: any;
 
     constructor(obj?: any) {
         this.firstName = obj ? obj.firstName : '';
@@ -19,6 +20,7 @@ export class User {
         this.email = obj ? obj.email : '';
         this.phone = obj ? obj.phone : '';
         this.gender = obj ? obj.gender : '';
+        this.notes = obj ? obj.notes: [];
 
 
     }
@@ -33,7 +35,8 @@ export class User {
             city: this.city,
             email: this.email,
             phone: this.phone,
-            gender: this.gender
+            gender: this.gender,
+            notes: this.notes,
 
         }
 

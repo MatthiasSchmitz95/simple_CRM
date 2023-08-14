@@ -9,6 +9,13 @@ mat-form-field{
     flex-direction: row;
 }
 
+.button-container{
+    flex-direction: column;
+    display: flex;
+    gap: 2px;
+}
+
+
 .user-table{
     border-collapse: collapse;
     tr{

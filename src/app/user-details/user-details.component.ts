@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CrudService } from '../services/crud.service';
-import { Firestore, deleteDoc, doc, docData } from '@angular/fire/firestore';
+import { Firestore, collection, deleteDoc, docData, doc, updateDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { User } from 'src/models/user.class';
 import { MatDialog } from '@angular/material/dialog';
@@ -21,11 +21,13 @@ export class UserDetailsComponent implements OnInit {
   user = new User();
   customerId;
   bDate;
+  newNote = '';
+  existingNotes = [];
+  filledNotes=false;
 
-  constructor(private route: ActivatedRoute, private crud: CrudService, public authService: AuthService, public dialog: MatDialog) { }
+  constructor(private route: ActivatedRoute, private crud: CrudService, public authService: AuthService, public dialog: MatDialog, public firestore: Firestore) { }
 
   ngOnInit() {
-
     this.route.paramMap.subscribe(paramMap => {
       this.customerId = paramMap.get('id');
       console.log('ID is', this.customerId);
@@ -33,26 +35,54 @@ export class UserDetailsComponent implements OnInit {
     })
   }
 
-  getUserById(userId) {
-
-    const userArr = this.crud.getUserById(userId);
+  getUserById(customerId) {
+    const userArr = this.crud.getUserById(customerId);
     userArr.subscribe((user) => {
       this.user = new User(user);
-      if(this.user.birthDate !=''){
+      this.existingNotes = this.user.notes;
+      console.log(this.existingNotes);
+
+      this.checkForNotes();
+
+      if (this.user.birthDate != '') {
         this.user.birthDate = this.user.birthDate.toDate();
         this.convertDate();
       }
-      
+
     })
+  }
+
+  checkForNotes(){
+    if (this.existingNotes.length >0) {
+      this.filledNotes = true;
+    }
+    else this.filledNotes = false;
+    
+  }
+
+  deleteNote(index:number){
+    this.existingNotes.splice(index,1);
+    this.crud.updateCustomerNotes(this.customerId, this.existingNotes)
+    this.checkForNotes();
 
   }
-  convertDate(){
+
+  pushNote() {
+    this.existingNotes.push(this.newNote);
+    this.crud.updateCustomerNotes(this.customerId, this.existingNotes)
+  }
+
+
+
+
+
+  convertDate() {
     const month = this.user.birthDate.getMonth() + 1;
     const day = this.user.birthDate.getDate();
     const year = this.user.birthDate.getFullYear();
     this.bDate = `${month}/${day}/${year}`;
     console.log(this.bDate);
-    
+
   }
 
   openAddressDialog() {
@@ -102,5 +132,5 @@ export class UserDetailsComponent implements OnInit {
     alert('Text copied to clipboard: ' + textToCopy);
   }
 
-  
+
 }

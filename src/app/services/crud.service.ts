@@ -58,6 +58,12 @@ export class CrudService {
 
   }
 
+  updateCustomerNotes(userId,note) {
+    const userIdRef = doc(this.firestore, 'users', `${this.authService.userData.uid}/customer/${userId}`);
+    return updateDoc(userIdRef, {notes:note})
+
+  }
+
   deleteUser(Id) {
     const userIdRef = doc(this.firestore, `users/${this.authService.userData.uid}/customer/${Id}`);
     return deleteDoc(userIdRef);
