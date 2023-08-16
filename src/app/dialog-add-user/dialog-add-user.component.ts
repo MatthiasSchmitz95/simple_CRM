@@ -6,6 +6,7 @@ import { Firestore, addDoc, collection } from '@angular/fire/firestore';
 import { AuthService } from '../services/auth.service';
 import { UserData } from '../../models/user-data';
 import { Timestamp } from 'firebase/firestore';
+import { DarkmodeService } from '../services/darkmode.service';
 
 
 
@@ -23,7 +24,7 @@ export class DialogAddUserComponent {
   birthDay;
   loading = false;
   userData: any;
-  constructor(public dialog: MatDialog, public crud: CrudService, public firestore: Firestore, public dialogRef: MatDialogRef<DialogAddUserComponent>, public authService: AuthService) {
+  constructor(public dialog: MatDialog, public crud: CrudService, public firestore: Firestore, public dialogRef: MatDialogRef<DialogAddUserComponent>, public authService: AuthService,public dm:DarkmodeService) {
   }
 
   convertDate() {

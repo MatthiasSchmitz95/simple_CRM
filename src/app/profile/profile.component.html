@@ -1,5 +1,5 @@
-<mat-card>
-    <button class="pin-upper-right-corner" [matMenuTriggerFor]="menuUser" mat-icon-button>
+<mat-card [class.darkmode-background-black]="this.dm.isChecked">
+        <button class="pin-upper-right-corner" [matMenuTriggerFor]="menuUser" mat-icon-button>
         <mat-icon>more_vert</mat-icon>
     </button>
     <div class="profile-info">

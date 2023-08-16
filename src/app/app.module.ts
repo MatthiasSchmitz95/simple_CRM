@@ -46,6 +46,7 @@ import { CustomerChartComponent } from './customer-chart/customer-chart.componen
 import { MobileNavbarComponent } from './mobile-navbar/mobile-navbar.component';
 import { ImprintComponent } from './imprint/imprint.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 
@@ -90,6 +91,7 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
     MatCardModule,
     MatMenuModule,
     MatRadioModule,
+    MatSlideToggleModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),

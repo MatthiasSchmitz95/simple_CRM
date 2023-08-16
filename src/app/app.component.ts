@@ -1,5 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { AuthService } from './services/auth.service';
+import { DarkmodeService } from './services/darkmode.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,7 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent implements OnInit {
   userId;
+  isChecked;
 
 ngOnInit(): void {
   this.authService.afAuth.authState.subscribe((user) => {
@@ -21,6 +23,6 @@ ngOnInit(): void {
 }
   title = 'simple_CRM';
 
-  constructor(public authService: AuthService) {}
+  constructor(public authService: AuthService, public dm: DarkmodeService) {}
   
 }

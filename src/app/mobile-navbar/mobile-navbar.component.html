@@ -1,3 +1,18 @@
+<mat-menu #menuSettings="matMenu">
+  <ul class="more-menu-items">
+    <li id="imprint" routerLink="/imprint" (click)="select('imprint')">
+      <mat-icon >list_alt_icon</mat-icon> Imprint
+    </li>
+    <li id="policy" routerLink="/private-policy" (click)="select('policy')">
+      <mat-icon >security</mat-icon> Policy
+    </li>
+    <li>
+      <mat-slide-toggle [(ngModel)]="this.dm.isChecked"></mat-slide-toggle>
+      Darkmode
+    </li>
+  </ul>
+</mat-menu>
+
 <ul class="menu-items" *ngIf="this.authService.isLoggedIn">
     <li id="dashboard" routerLink="/dashboard/{{userId}}" (click)="select('dashboard')">
       <mat-icon >dashboard</mat-icon> Dashboard
@@ -8,10 +23,8 @@
     <li id="account" routerLink="/profile/{{userId}}" (click)="select('account')">
       <mat-icon >account_circle</mat-icon> Profile
     </li>
-    <li id="imprint" routerLink="/imprint" (click)="select('imprint')">
-      <mat-icon >list_alt_icon</mat-icon> Imprint
-    </li>
-    <li id="policy" routerLink="/private-policy" (click)="select('policy')">
-      <mat-icon >security</mat-icon> Policy
+
+    <li id="more" [matMenuTriggerFor]="menuSettings" (click)="select('more')">
+      <mat-icon  style="rotate: 90deg;">more_vert</mat-icon> More
     </li>
   </ul>

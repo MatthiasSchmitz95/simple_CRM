@@ -1,5 +1,5 @@
-<mat-drawer-container class="mat-drawer-container" autosize>
-  <mat-drawer  #drawer class="sidenav" mode="side" [opened]="authService.isLoggedIn">
+<mat-drawer-container class="mat-drawer-container" [class.darkmode-background]="this.dm.isChecked" autosize>
+  <mat-drawer  #drawer class="sidenav" mode="side" [class.darkmode-background]="this.dm.isChecked"  [opened]="authService.isLoggedIn">
     <div class="logo-container">
       <img src="assets/Logo/logo.png" alt="">
     </div>
@@ -23,10 +23,14 @@
       <li routerLink="/private-policy">
         <mat-icon>security</mat-icon> Private policy
       </li>
+      <li>
+        <mat-slide-toggle [(ngModel)]="this.dm.isChecked"></mat-slide-toggle>
+        Darkmode
+      </li>
     </ul>
   </mat-drawer>
 
-  <div class="example-sidenav-content">
+  <div class="example-sidenav-content" [class.darkmode-background]="this.dm.isChecked">
     <mat-toolbar color="primary" class="toolbar">
       <mat-toolbar-row>
         <div class="logo-container mobile-logo">
@@ -36,9 +40,11 @@
           <button *ngIf="authService.isLoggedIn" mat-icon-button (click)="drawer.toggle()">
             <mat-icon >menu</mat-icon>
           </button>
-          <h1 *ngIf="!authService.isLoggedIn" [ngClass]="{'pl-40': !authService.isLoggedIn}">simple CRM</h1>
+          <div class="logo-container-login" *ngIf="!authService.isLoggedIn" >
+            <img src="assets/Logo/logo.png" alt="">
+          </div>
         </div>
-        <button mat-raised-button (click)="authService.SignOut()" *ngIf="authService.isLoggedIn" routerLink="/login">Logout</button>
+        <button mat-raised-button [class.darkmode-background]="isChecked" (click)="authService.SignOut()" *ngIf="authService.isLoggedIn" routerLink="/login">Logout</button>
       </mat-toolbar-row>
     </mat-toolbar>
     <div class="router-container">

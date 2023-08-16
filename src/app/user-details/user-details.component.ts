@@ -9,6 +9,7 @@ import { DialogEditAddressComponent } from '../dialog-edit-address/dialog-edit-a
 import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
 import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
 import { AuthService } from '../services/auth.service';
+import { DarkmodeService } from '../services/darkmode.service';
 
 @Component({
   selector: 'app-user-details',
@@ -23,14 +24,13 @@ export class UserDetailsComponent implements OnInit {
   bDate;
   newNote = '';
   existingNotes = [];
-  filledNotes=false;
+  filledNotes = false;
 
-  constructor(private route: ActivatedRoute, private crud: CrudService, public authService: AuthService, public dialog: MatDialog, public firestore: Firestore) { }
+  constructor(private route: ActivatedRoute, private crud: CrudService, public authService: AuthService, public dialog: MatDialog, public firestore: Firestore, public dm:DarkmodeService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(paramMap => {
       this.customerId = paramMap.get('id');
-      console.log('ID is', this.customerId);
       this.getUserById(this.customerId);
     })
   }
@@ -40,8 +40,6 @@ export class UserDetailsComponent implements OnInit {
     userArr.subscribe((user) => {
       this.user = new User(user);
       this.existingNotes = this.user.notes;
-      console.log(this.existingNotes);
-
       this.checkForNotes();
 
       if (this.user.birthDate != '') {
@@ -52,16 +50,16 @@ export class UserDetailsComponent implements OnInit {
     })
   }
 
-  checkForNotes(){
-    if (this.existingNotes.length >0) {
+  checkForNotes() {
+    if (this.existingNotes.length > 0) {
       this.filledNotes = true;
     }
     else this.filledNotes = false;
-    
+
   }
 
-  deleteNote(index:number){
-    this.existingNotes.splice(index,1);
+  deleteNote(index: number) {
+    this.existingNotes.splice(index, 1);
     this.crud.updateCustomerNotes(this.customerId, this.existingNotes)
     this.checkForNotes();
 
@@ -69,7 +67,8 @@ export class UserDetailsComponent implements OnInit {
 
   pushNote() {
     this.existingNotes.push(this.newNote);
-    this.crud.updateCustomerNotes(this.customerId, this.existingNotes)
+    this.crud.updateCustomerNotes(this.customerId, this.existingNotes);
+    this.newNote='';
   }
 
 

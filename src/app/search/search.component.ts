@@ -4,6 +4,7 @@ import { combineLatest, map } from 'rxjs';
 import { User } from 'src/models/user.class';
 import { AuthService } from '../services/auth.service';
 import { SearchServiceService } from '../services/search-service.service';
+import { DarkmodeService } from '../services/darkmode.service';
 
 @Component({
   selector: 'app-search',
@@ -19,9 +20,9 @@ export class SearchComponent {
     city: null,
   }
 
-  constructor(private afsCompact: AngularFirestore, public authService: AuthService, public search:SearchServiceService) {
+  constructor(private afsCompact: AngularFirestore, public authService: AuthService, public search:SearchServiceService, public dm:DarkmodeService) {
   }
-cancleSearch(){
+CancelSearch(){
   this.search.search = false;
   this.searchParams.firstName= null;
   this.searchParams.city= null;

@@ -5,6 +5,7 @@ import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.compo
 import { AuthService } from '../services/auth.service';
 import { CrudService } from '../services/crud.service';
 import { SearchServiceService } from '../services/search-service.service';
+import { DarkmodeService } from '../services/darkmode.service';
 
 @Component({
   selector: 'app-user',
@@ -18,7 +19,7 @@ export class UserComponent implements OnInit {
   userId;
 
 
-  constructor(public dialog: MatDialog, private crud: CrudService, public authService: AuthService, public search:SearchServiceService) {
+  constructor(public dialog: MatDialog, private crud: CrudService, public authService: AuthService, public search:SearchServiceService,public dm:DarkmodeService) {
 
   }
 

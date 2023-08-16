@@ -1,4 +1,5 @@
-<mat-card class="header-card p-24">
+<mat-card class="header-card p-24" [class.darkmode-background-black]="this.dm.isChecked">
+    
     <div class="card-content">
         <button class="pin-upper-right-corner" [matMenuTriggerFor]="menuUser" mat-icon-button>
             <mat-icon>more_vert</mat-icon>
@@ -37,7 +38,8 @@
 </mat-card>
 
 
-<mat-card class="mt-32 p-24">
+<mat-card class="mt-32 p-24" [class.darkmode-background-black]="this.dm.isChecked">
+    
     <button class="pin-upper-right-corner" [matMenuTriggerFor]="menu" mat-icon-button>
         <mat-icon>more_vert</mat-icon>
     </button>
@@ -52,7 +54,8 @@
 </mat-card>
 
 <div class="mt-32" *ngIf="filledNotes">
-    <mat-card>
+    <mat-card [class.darkmode-background-black]="this.dm.isChecked">
+        
         <mat-card-title class="mb-16 title ">Notes</mat-card-title>
         <ul>
             <li *ngFor="let note of existingNotes; let i = index">
@@ -67,7 +70,8 @@
 
   </div>
 
-<mat-card class="mt-32 p-24 mobile-mb-100">
+<mat-card class="mt-32 p-24 mobile-mb-100" [class.darkmode-background-black]="this.dm.isChecked">
+    
     <mat-card-title class="mb-16">Write note</mat-card-title>
     <mat-form-field>
         <mat-label>Textarea</mat-label>

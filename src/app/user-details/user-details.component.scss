@@ -83,6 +83,7 @@ p{
   
   .note-item-button {
     min-width: 0px !important;
+    margin-right: 2px;
 
 
 }
@@ -91,6 +92,12 @@ p{
 @media(max-width:750px){
     .mobile-mb-100{
         margin-bottom: 100px;
+    }
+}
+
+@media(max-width:415px){
+    .card-content{
+        flex-direction: column;
     }
 }
 

@@ -16,6 +16,14 @@ mat-form-field{
 }
 
 
+  
+  .mat-form-field.darkmode-background-black .mat-form-field-placeholder,
+  .mat-form-field.darkmode-background-black .mat-input-element::placeholder {
+    color: white; /* Change this to the color you want */
+  }
+  
+
+
 .user-table{
     border-collapse: collapse;
     tr{
@@ -45,7 +53,6 @@ mat-form-field{
 
 @media(max-width:750px){
     .row{
-        margin-left: 5px;
-        margin-right: 5px;
+        padding: 0 16px;
     }
 }

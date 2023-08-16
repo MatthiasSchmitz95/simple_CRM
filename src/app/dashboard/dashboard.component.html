@@ -1,4 +1,5 @@
-<mat-card class="mb-16">
+
+<mat-card class="mb-16" [class.darkmode-background-black]="this.dm.isChecked">
 
     <div class="user-count-container p-24">
         <img src="assets/profile-img.png" alt="">
@@ -7,7 +8,7 @@
 
   </mat-card>
 
-  <mat-card class="aligned">
+  <mat-card class="aligned" [class.darkmode-background-black]="this.dm.isChecked">
     <mat-card-title>Customers in Cities</mat-card-title>
     <app-customer-chart ></app-customer-chart>
   </mat-card>

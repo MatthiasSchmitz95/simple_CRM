@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { DarkmodeService } from '../services/darkmode.service';
 
 @Component({
   selector: 'app-mobile-navbar',
@@ -8,7 +9,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class MobileNavbarComponent implements OnInit {
   userId;
-  constructor(public authService: AuthService) {}
+  constructor(public authService: AuthService, public dm:DarkmodeService) {}
 
   ngOnInit(): void {
     this.authService.afAuth.authState.subscribe((user) => {
@@ -30,8 +31,7 @@ export class MobileNavbarComponent implements OnInit {
     document.getElementById('account').classList.remove('teal');
     document.getElementById('user').classList.remove('teal');
     document.getElementById('dashboard').classList.remove('teal');
-    document.getElementById('imprint').classList.remove('teal');
-    document.getElementById('policy').classList.remove('teal');
+    document.getElementById('more').classList.remove('teal');
 
   }
 

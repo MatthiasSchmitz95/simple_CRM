@@ -7,12 +7,16 @@ h3{
 }
 
 .container{
-    
     overflow-x: hidden;
-    margin-bottom: 80px;
     padding-left:  16px;
     margin-right: 16px;
     p{
         font-size: 14px;
     }
+}
+
+@media(max-width:750px){
+.container{
+    margin-bottom: 80px;
+}
 }

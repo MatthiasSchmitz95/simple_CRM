@@ -4,6 +4,7 @@ import { Firestore, collection, doc, getCountFromServer, getDocs, query, where }
 import { AuthService } from '../services/auth.service';
 import { User } from 'src/models/user.class';
 import { Observable } from 'rxjs';
+import { DarkmodeService } from '../services/darkmode.service';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class DashboardComponent implements OnInit {
   user = new User()
   customers$: Observable<any[]>;
   cityList = [];
-  constructor(public crud: CrudService, public firestore: Firestore, public authService: AuthService) {
+  constructor(public crud: CrudService, public firestore: Firestore, public authService: AuthService, public dm:DarkmodeService) {
 
   }
   ngOnInit() {

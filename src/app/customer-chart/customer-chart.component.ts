@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { User } from 'src/models/user.class';
 import { CrudService } from '../services/crud.service';
 import { AuthService } from '../services/auth.service';
+import { DarkmodeService } from '../services/darkmode.service';
 Chart.register(...registerables);
 
 @Component({
@@ -18,7 +19,9 @@ export class CustomerChartComponent  {
   customers$: Observable<any[]>;
   cityList = [];
   cityData =[];
-  constructor(public crud: CrudService, public firestore: Firestore, public authService: AuthService) {
+  myChart: Chart;
+
+  constructor(public crud: CrudService, public firestore: Firestore, public authService: AuthService, public dm:DarkmodeService) {
 
   }
   ngOnInit() {
@@ -59,7 +62,7 @@ export class CustomerChartComponent  {
     const querySnapshot = await getDocs(q);
    
     this.cityData.push(querySnapshot.size);
-    console.log(this.cityData);
+    
     ;
     
     querySnapshot.forEach((doc) => {
@@ -69,31 +72,30 @@ export class CustomerChartComponent  {
   }
   @ViewChild('myChartCanvas') myChartCanvas!: ElementRef<HTMLCanvasElement>;
 
+updateChart(){
+  this.myChart.update();
+}
+
   createChart() {
     const ctx = this.myChartCanvas.nativeElement.getContext('2d');
     if (ctx) {
-      new Chart(ctx, {
+    const myChart =  new Chart(ctx, {
         type: 'pie',
         data: {
           labels: this.cityList,
           datasets: [{
-            label: '# customers',
+            label: 'customers',
             data: this.cityData,
             backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
               'rgba(255, 99, 132, 1)',
               'rgba(54, 162, 235, 1)',
               'rgba(255, 206, 86, 1)',
               'rgba(75, 192, 192, 1)',
               'rgba(153, 102, 255, 1)',
               'rgba(255, 159, 64, 1)'
+            ],
+            borderColor: [
+              'rgba(0, 0, 0, 1)', // This is where the error is pointing to
             ],
             borderWidth: 1
           }]
@@ -103,9 +105,19 @@ export class CustomerChartComponent  {
             y: {
               display: false
             }
+          },
+          plugins: {
+            legend: {
+              labels: {
+                color: this.dm.isChecked ? 'white' : 'black'
+              }
+            }
           }
         }
       });
     }
   }
+  
+
+
 }
