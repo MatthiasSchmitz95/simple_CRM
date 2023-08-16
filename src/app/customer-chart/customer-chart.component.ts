@@ -19,7 +19,7 @@ export class CustomerChartComponent  {
   customers$: Observable<any[]>;
   cityList = [];
   cityData =[];
-  myChart: Chart;
+  myChart;
 
   constructor(public crud: CrudService, public firestore: Firestore, public authService: AuthService, public dm:DarkmodeService) {
 
@@ -52,7 +52,7 @@ export class CustomerChartComponent  {
     // Await all the countCity promises
     await Promise.all(countPromises);
 
-    console.log(this.cityList);
+    
     this.createChart()
   }
 
@@ -72,14 +72,11 @@ export class CustomerChartComponent  {
   }
   @ViewChild('myChartCanvas') myChartCanvas!: ElementRef<HTMLCanvasElement>;
 
-updateChart(){
-  this.myChart.update();
-}
 
   createChart() {
     const ctx = this.myChartCanvas.nativeElement.getContext('2d');
     if (ctx) {
-    const myChart =  new Chart(ctx, {
+    this.myChart =  new Chart(ctx, {
         type: 'pie',
         data: {
           labels: this.cityList,
@@ -92,7 +89,9 @@ updateChart(){
               'rgba(255, 206, 86, 1)',
               'rgba(75, 192, 192, 1)',
               'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)'
+              'rgba(255, 159, 64, 1)',
+              'rgba(107, 71, 10,1)',
+              'rgba(188, 246, 255,1)'
             ],
             borderColor: [
               'rgba(0, 0, 0, 1)', // This is where the error is pointing to
@@ -115,6 +114,9 @@ updateChart(){
           }
         }
       });
+      this.myChart.update();
+      console.log('chart updated');
+      
     }
   }
   

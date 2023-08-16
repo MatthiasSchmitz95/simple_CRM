@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Firestore, collection, doc, docData } from '@angular/fire/firestore';
+import { DarkmodeService } from '../services/darkmode.service';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   @ViewChild('userPassword') userPassword: ElementRef;
 
 
-  constructor(public authService: AuthService,public firestore:Firestore) { }
+  constructor(public authService: AuthService,public firestore:Firestore, public dm:DarkmodeService) { }
 
   ngOnInit() {  }
 

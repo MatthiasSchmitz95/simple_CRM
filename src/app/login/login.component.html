@@ -3,13 +3,13 @@
             <h3 class="mt-32 mb-32">Login</h3>
 
             <mat-form-field class="mr-16" appearance="outline">
-                <mat-label>Email</mat-label>
-                <input class="custom-border-red" matInput type="text" placeholder="Email" #userName required>
+                <mat-label [class.darkmode-input]="this.dm.isChecked">Email</mat-label>
+                <input [class.darkmode-input]="this.dm.isChecked"class="custom-border-red" matInput type="text" placeholder="Email" #userName required>
             </mat-form-field>
             <div>
                 <mat-form-field class="mr-16" appearance="outline">
-                    <mat-label>Password</mat-label>
-                    <input matInput type="password" placeholder="password" #userPassword required>
+                    <mat-label [class.darkmode-input]="this.dm.isChecked">Password</mat-label>
+                    <input [class.darkmode-input]="this.dm.isChecked" matInput type="password" placeholder="password" #userPassword required>
                 </mat-form-field>
             </div>
             <!-- Calling SignIn Api from AuthService -->
