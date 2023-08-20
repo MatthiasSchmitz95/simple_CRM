@@ -1,23 +1,12 @@
 <div class="row mb-32">
 
     <mat-form-field class="mr-16" appearance="outline" [class.darkmode-background-black]="this.dm.isChecked">
-        <mat-label [class.darkmode-background-black]="this.dm.isChecked">Name</mat-label>
-        <input [class.darkmode-background-black]="this.dm.isChecked" matInput type="text" name="firstName" #name="ngModel" [(ngModel)]="searchParams.firstName"
-            placeholder="Name" />
-    </mat-form-field>
-
-    <mat-form-field class="mr-16" appearance="outline" [class.darkmode-background-black]="this.dm.isChecked">
-        <mat-label [class.darkmode-background-black]="this.dm.isChecked">Email</mat-label>
-        <input [class.darkmode-background-black]="this.dm.isChecked" matInput type="text" name="email" #email="ngModel" [(ngModel)]="searchParams.email"
-            placeholder="Email" />
+        <mat-label [class.darkmode-background-black]="this.dm.isChecked">Search</mat-label>
+        <input [class.darkmode-background-black]="this.dm.isChecked" matInput type="text" name="searchTerm" #name="ngModel" [(ngModel)]="searchTerm"
+            placeholder="Search" />
     </mat-form-field>
 
 
-
-    <mat-form-field class="mr-16" appearance="outline" [class.darkmode-background-black]="this.dm.isChecked" >
-        <mat-label [class.darkmode-background-black]="this.dm.isChecked">City</mat-label>
-        <input [class.darkmode-background-black]="this.dm.isChecked"  matInput type="text" name="city" #city="ngModel" [(ngModel)]="searchParams.city" placeholder="City" />
-    </mat-form-field>
     <div class="button-container">
         <button  type="button" mat-raised-button color="primary"
             (click)="onSearchCustomer()">Search</button>
@@ -34,7 +23,7 @@
             <td>City</td>
         </tr>
 
-        <div *ngIf="!isSearchEmpty; else noSearch" class="mr-16"></div>
+        <div *ngIf="!isSearchEmpty; " class="mr-16"></div>
 
         <tr *ngFor="let customer of customer; index as i" (click)="CancelSearch()" [routerLink]="'/user/' + userId + '/' + customer.id">
             <td>{{ customer.firstName }} {{ customer.lastName }}</td>

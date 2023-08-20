@@ -27,10 +27,8 @@ export class AuthService {
     /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
     this.afAuth.authState.subscribe((user) => {
-      console.log('Test', user);
       if (user) {
         this.userData = user;
-        console.log('userData is',this.userData);
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user')!);
       } else {
@@ -42,13 +40,13 @@ export class AuthService {
 // Sign in with email/password
  async SignIn(email: string, password: string) {
    try {
+    
      const result = await this.afAuth.signInWithEmailAndPassword(email, password);
-     console.log('Ergebnis', result);
+     console.log('Ergebnis', result,email,password);
      // Wait for the getUserName() function to finish before proceeding
      await new Promise((resolve, reject) => {
        this.afAuth.authState.subscribe((user) => {
          if (user) {
-           console.log("user is", user);
            resolve(user);
          } else {
            reject(new Error("User not found"));
@@ -62,7 +60,10 @@ export class AuthService {
      console.error("Sign-in failed:", error);
    }
  }
-
+deleteUser(){
+  this.afAuth.currentUser.then(user => user?.delete());
+  this.SignOut();
+}
 
   async getUserName(id) {
     let userRef = doc(this.firestore, 'users', `${id}`);
@@ -132,6 +133,7 @@ export class AuthService {
   }
   // Sign out
   SignOut() {
+    this.router.navigate(['login']);
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
     });

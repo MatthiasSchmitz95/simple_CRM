@@ -16,7 +16,7 @@ import { DarkmodeService } from '../services/darkmode.service';
 export class ProfileComponent implements OnInit {
   userData: UserData;
   user = new User();
-  constructor(public router: Router, public authService: AuthService, public crud: CrudService, public firestore: Firestore, public dm:DarkmodeService) {
+  constructor(public router: Router, public authService: AuthService, public crud: CrudService, public firestore: Firestore, public dm: DarkmodeService) {
 
   }
   ngOnInit() {
@@ -37,16 +37,22 @@ export class ProfileComponent implements OnInit {
     return docData(userIdRef, { idField: 'id' }) as Observable<UserData>;
   }
 
-  deleteUser() {
+ async deleteUser() {
     if (this.authService.userData.uid === 'm9vxpi4hVuercy8uvrdKCx1ytQ62') {
       alert('no permissions to delete the Guest user')
     }
-    else{
-      const userIdRef = doc(this.firestore, `users/${this.authService.userData.uid}`);
-      deleteDoc(userIdRef);
-      this.router.navigateByUrl('/login');
+    else {
+      debugger
+      try {
+        const userIdRef = doc(this.firestore, `users/${this.authService.userData.uid}`);
+        await deleteDoc(userIdRef);
+        console.log('Document deleted successfully');
+      } catch (error) {
+        console.error('Error deleting document:', error);
+      }
+      this.authService.deleteUser();
     }
-    
+
 
   }
 }

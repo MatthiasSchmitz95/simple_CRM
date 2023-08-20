@@ -51,10 +51,14 @@ export class UserDetailsComponent implements OnInit {
   }
 
   checkForNotes() {
-    if (this.existingNotes.length > 0) {
-      this.filledNotes = true;
+    if (this.existingNotes) {
+      if (this.existingNotes.length > 0) {
+        this.filledNotes = true;
+      }
+      else this.filledNotes = false;
+      
     }
-    else this.filledNotes = false;
+
 
   }
 

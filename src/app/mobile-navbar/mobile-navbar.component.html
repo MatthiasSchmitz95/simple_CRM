@@ -1,9 +1,9 @@
 <mat-menu #menuSettings="matMenu">
   <ul class="more-menu-items">
-    <li id="imprint" routerLink="/imprint" (click)="select('imprint')">
+    <li id="imprint" routerLink="/imprint" >
       <mat-icon >list_alt_icon</mat-icon> Imprint
     </li>
-    <li id="policy" routerLink="/private-policy" (click)="select('policy')">
+    <li id="policy" routerLink="/private-policy" >
       <mat-icon >security</mat-icon> Policy
     </li>
     <li>
@@ -18,7 +18,7 @@
       <mat-icon >dashboard</mat-icon> Dashboard
     </li>
     <li id="user" routerLink="/user" (click)="select('user')">
-      <mat-icon >person</mat-icon> User
+      <mat-icon >person</mat-icon> Customer
     </li>
     <li id="account" routerLink="/profile/{{userId}}" (click)="select('account')">
       <mat-icon >account_circle</mat-icon> Profile

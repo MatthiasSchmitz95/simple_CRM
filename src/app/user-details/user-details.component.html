@@ -19,13 +19,13 @@
             </div>
             <div class="flex">
                 <p class="mr-16">email:</p>
-                <p id="email">{{user.email}}</p>
-                <mat-icon class="wh-18" (click)="copyToClipboard('name')">file_copy</mat-icon>
+                <a  href="mailto:{{user.email}}" id="email">{{user.email}}</a>
+                <mat-icon class="wh-18" (click)="copyToClipboard('email')">file_copy</mat-icon>
             </div>
             <div class="flex">
                 <p class="mr-16">phone:</p>
-                <p id="phone">{{user.phone}}</p>
-                <mat-icon class="wh-18" (click)="copyToClipboard('name')">file_copy</mat-icon>
+                <a href="phoneto:{{user.phone}}" id="phone">{{user.phone}}</a>
+                <mat-icon class="wh-18" (click)="copyToClipboard('phone')">file_copy</mat-icon>
             </div>
             <div class="flex">
                 <p class="mr-16">birthdate:</p>
