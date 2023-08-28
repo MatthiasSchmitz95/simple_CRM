@@ -1,5 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { AuthService } from './services/auth.service';
+import { ChartService } from './services/chart.service';
 import { DarkmodeService } from './services/darkmode.service';
 
 @Component({
@@ -23,6 +24,6 @@ ngOnInit(): void {
 }
   title = 'simple_CRM';
 
-  constructor(public authService: AuthService, public dm: DarkmodeService) {}
+  constructor(public authService: AuthService, public dm: DarkmodeService, public chart: ChartService) {}
   
 }

@@ -1,7 +1,7 @@
 
         <div class="mobile">
             <h3 class="mt-32 mb-32">Login</h3>
-
+            <form (ngSubmit)="onSubmit()">
             <mat-form-field class="mr-16" appearance="outline">
                 <mat-label [class.darkmode-input]="this.dm.isChecked">Email</mat-label>
                 <input [class.darkmode-input]="this.dm.isChecked"class="custom-border-red" matInput type="text" placeholder="Email" #userName required>
@@ -14,8 +14,7 @@
             </div>
             <!-- Calling SignIn Api from AuthService -->
             <div>
-                <button class="mr-16" mat-raised-button color="primary" type="button"
-                    (click)="loginCheck(userName.value, userPassword.value)">Login</button>
+                <button class="mr-16" mat-raised-button color="primary" type="submit">Login</button>
 
                     <button mat-raised-button color="primary" type="button"
                     (click)="loginCheck('guest@trash-mail.com','guestlogin')">Guest Login</button>
@@ -27,7 +26,7 @@
                 <span>Don't have an account?<span class="colored" routerLink="/sign-up">
                         Sign Up</span></span>
             </div>
-        </div>
+        
 
 
 
