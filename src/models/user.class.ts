@@ -39,6 +39,7 @@ export class User {
             phone: this.phone,
             gender: this.gender,
             notes: this.notes,
+            contracts: this.contracts
 
         }
 

@@ -72,6 +72,11 @@ export class CrudService {
     return updateDoc(userIdRef, {contracts:contract})
 
   }
+  setCustomerContract(userId,contract) {
+    const userIdRef = doc(this.firestore, 'users', `${this.authService.userData.uid}/customer/${userId}`);
+    return setDoc(userIdRef, contract)
+
+  }
 
   deleteUser(Id) {
     const userIdRef = doc(this.firestore, `users/${this.authService.userData.uid}/customer/${Id}`);

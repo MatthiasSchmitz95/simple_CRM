@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Firestore, doc, setDoc, updateDoc } from '@angular/fire/firestore';
 import { MatDialogRef } from '@angular/material/dialog';
 import { User } from 'src/models/user.class';
@@ -10,12 +10,18 @@ import { CrudService } from '../services/crud.service';
   templateUrl: './dialog-edit-address.component.html',
   styleUrls: ['./dialog-edit-address.component.scss']
 })
-export class DialogEditAddressComponent {
+export class DialogEditAddressComponent implements OnInit {
   user: User;
   loading = false;
   userId;
 
   constructor(public dialogRef: MatDialogRef<DialogEditAddressComponent>, public crud: CrudService, public firestore: Firestore, public authService:AuthService) { }
+ 
+  ngOnInit(): void {
+    console.log(this.user);
+    
+  }
+ 
   saveUser() {
     this.loading = true;
     const userIdRef = doc(this.firestore, `users/${this.authService.userData.uid}/customer/${this.userId}`);

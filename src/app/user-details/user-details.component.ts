@@ -49,7 +49,7 @@ export class UserDetailsComponent implements OnInit {
       this.existingContracts = this.user.contracts;
       this.checkForNotes();
       console.log(this.user,'daten');
-      console.log(this.user.contracts);
+      console.log(this.user.contracts,  'contracts');
       
             if (this.user.birthDate != '') {
         this.user.birthDate = this.user.birthDate.toDate();
