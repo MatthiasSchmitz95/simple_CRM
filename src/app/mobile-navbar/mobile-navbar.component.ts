@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { ChartService } from '../services/chart.service';
 import { DarkmodeService } from '../services/darkmode.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { DarkmodeService } from '../services/darkmode.service';
 })
 export class MobileNavbarComponent implements OnInit {
   userId;
-  constructor(public authService: AuthService, public dm:DarkmodeService) {}
+  constructor(public authService: AuthService, public dm:DarkmodeService, public chart: ChartService) {}
 
   ngOnInit(): void {
     this.authService.afAuth.authState.subscribe((user) => {

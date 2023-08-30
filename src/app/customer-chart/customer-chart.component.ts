@@ -27,8 +27,6 @@ export class CustomerChartComponent {
   }
   @ViewChild('myChartCanvas') myChartCanvas!: ElementRef<HTMLCanvasElement>;
   ngAfterViewInit() {
-    const ctx = this.myChartCanvas.nativeElement.getContext('2d');
-
     this.authService.afAuth.authState.subscribe((user) => {
       if (user) {
         this.getCityNames(user.uid);
@@ -36,8 +34,6 @@ export class CustomerChartComponent {
       }
     });
   }
-
-
 
   async getCityNames(useruid) {
     const cityRef = collection(this.firestore, `users/${useruid}/customer`);

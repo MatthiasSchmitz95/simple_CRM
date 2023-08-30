@@ -19,24 +19,20 @@
             </div>
             <div class="flex">
                 <p class="mr-16">email:</p>
-                <a  href="mailto:{{user.email}}" id="email">{{user.email}}</a>
-                <mat-icon class="wh-18" (click)="copyToClipboard('email')">file_copy</mat-icon>
+                <a  href="mailto:{{user.email}}" id="email">{{user.email}}</a>  
             </div>
             <div class="flex">
                 <p class="mr-16">phone:</p>
-                <a href="phoneto:{{user.phone}}" id="phone">{{user.phone}}</a>
-                <mat-icon class="wh-18" (click)="copyToClipboard('phone')">file_copy</mat-icon>
+                <a href="phoneto:{{user.phone}}" id="phone">{{user.phone}}</a>  
             </div>
             <div class="flex">
                 <p class="mr-16">born:</p>
                 <p id="bDate">{{bDate}}</p>
-                <mat-icon class="wh-18" (click)="copyToClipboard('bDate')">file_copy</mat-icon>
+                
             </div>
-
         </div>
     </div>
 </mat-card>
-
 
 <mat-card class="mt-32 p-24" [class.darkmode-background-black]="this.dm.isChecked">
     
@@ -51,6 +47,32 @@
     <mat-card-title class="mb-16">Address</mat-card-title>
     <p>{{user.street}}</p>
     <p>{{user.zipCode}} {{user.city}}</p>
+</mat-card>
+
+<mat-card class="mt-32 p-24" [class.darkmode-background-black]="this.dm.isChecked">
+    <button class="pin-upper-right-corner" [matMenuTriggerFor]="contractMenu" mat-icon-button>
+        <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #contractMenu="matMenu">
+        <button mat-menu-item (click)="openAddContract()">Add Contract</button>
+        <button mat-menu-item (click)="openEditContract()">Edit Contract</button>
+    </mat-menu>
+    <mat-card-title class="mb-16">Contracts</mat-card-title>
+    <table>
+        <tr>
+            <td><b>Contract name</b></td>
+            <td><b>Income</b> </td>
+            <td><b>Expense</b> </td>
+        </tr>
+        <tr *ngFor="let contract of existingContracts; let i = index">
+            <td> {{ contract.name }}</td>
+            <td> {{ contract.income }}</td>
+            <td> {{ contract.expense }}</td>
+        </tr>
+            
+        
+    </table>
+
 </mat-card>
 
 <div class="mt-32" *ngIf="filledNotes">
@@ -71,11 +93,12 @@
   </div>
 
 <mat-card class="mt-32 p-24 mobile-mb-100" [class.darkmode-background-black]="this.dm.isChecked">
-    
+    <form (submit)="pushNote()" #noteForm="ngForm">
     <mat-card-title class="mb-16">Write note</mat-card-title>
-    <mat-form-field>
+    <mat-form-field class="mr-16">
         <mat-label>Textarea</mat-label>
-        <textarea id="notes" [(ngModel)]="newNote" matInput></textarea>
+        <textarea id="notes" [(ngModel)]="newNote" name="newNote" matInput required ngModel #newNoteModel="ngModel"></textarea>
     </mat-form-field>
-    <button class="save-button" (click)="pushNote()" mat-raised-button color="primary">Save</button>
+    <button class="save-button" type="submit" mat-raised-button color="primary" [disabled]="!noteForm.form.valid">Save</button>
+</form>
 </mat-card>

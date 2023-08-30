@@ -23,7 +23,6 @@ export class SearchComponent {
     this.searchTerm=null;
   }
 
-  
 
   onSearchCustomer() {
     this.search.search = true;

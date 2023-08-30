@@ -1,0 +1,38 @@
+<form (ngSubmit)="pushContract()">
+    <div mat-dialog-content class="form-container">
+        <h3 mat-dialog-title>Add Contract</h3>
+        <mat-form-field>
+            <mat-label>Contract name</mat-label>
+            <input type="text" matInput [formControl]="nameControl" [errorStateMatcher]="matcher"
+                placeholder="Contract name" [(ngModel)]="name" name="name">
+            <mat-error *ngIf="nameControl.hasError('email') && !nameControl.hasError('required')">
+                Please enter a name for your contract
+            </mat-error>
+            <mat-error *ngIf="nameControl.hasError('required')">
+                Name is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Income</mat-label>
+            <span style="margin-left: 5px;" matPrefix>$&nbsp;</span>
+            <input type="number" matInput placeholder="Income" [(ngModel)]="income" name="icome">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Expense</mat-label>
+            <span style="margin-left: 5px;" matPrefix>$&nbsp;</span>
+            <input type="number" matInput placeholder="Expense" [(ngModel)]="expense" name="expense">
+        </mat-form-field>
+
+        <div>
+            <button mat-raised-button type="button" (click)="closeDialog()">Cancel</button>
+            <button mat-raised-button type="submit" color="primary">Save</button>
+        </div>
+
+
+
+    </div>
+
+
+</form>

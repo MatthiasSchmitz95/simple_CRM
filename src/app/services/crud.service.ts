@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CollectionReference, Firestore, QuerySnapshot, addDoc, collection, collectionData, deleteDoc, doc, docData, getCountFromServer, setDoc, updateDoc } from '@angular/fire/firestore';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from 'src/models/user.class';
 import { AuthService } from './auth.service';
@@ -10,8 +11,10 @@ import { AuthService } from './auth.service';
 export class CrudService {
   user = new User();
   userData: any;
+  customerId;
+  existingContracts = [];
 
-  constructor(public firestore: Firestore, public authService: AuthService) { }
+  constructor(public firestore: Firestore, public authService: AuthService, public route:ActivatedRoute) { }
 
   addUser(user){
     const userInstance = collection(this.firestore, 'user')
@@ -61,6 +64,12 @@ export class CrudService {
   updateCustomerNotes(userId,note) {
     const userIdRef = doc(this.firestore, 'users', `${this.authService.userData.uid}/customer/${userId}`);
     return updateDoc(userIdRef, {notes:note})
+
+  }
+
+  updateCustomerContract(userId,contract) {
+    const userIdRef = doc(this.firestore, 'users', `${this.authService.userData.uid}/customer/${userId}`);
+    return updateDoc(userIdRef, {contracts:contract})
 
   }
 

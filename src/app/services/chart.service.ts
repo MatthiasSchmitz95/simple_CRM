@@ -19,8 +19,6 @@ export class ChartService {
     this.cityData = cityData;
   }
 
-
-
   recreateChart() {
     if (this.myChart) {
       const ctx = this.myChart.canvas.getContext('2d');
@@ -44,14 +42,19 @@ export class ChartService {
             label: 'customers',
             data: this.cityData,
             backgroundColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)',
-              'rgba(107, 71, 10,1)',
-              'rgba(188, 246, 255,1)'
+              'rgba(255, 99, 132, 0.7)',
+              'rgba(54, 162, 235, 0.7)',
+              'rgba(255, 206, 86, 0.7)',
+              'rgba(75, 192, 192, 0.7)',
+              'rgba(153, 102, 255,0.7)',
+              'rgba(255, 159, 64, 0.7)',
+              'rgba(107, 71, 10,  0.7)',
+              'rgba(188, 246, 255,0.7)',
+              'rgba(89, 83, 163, 0.8)',
+              'rgba(50, 241, 168, 0.5)',
+              'rgba(81, 99, 233, 0.9)',
+              'rgba(32, 136, 168, 0.8)',
+              'rgba(243, 101, 15, 0.9)',
             ],
             borderColor: [
               'rgba(0, 0, 0, 1)', // This is where the error is pointing to

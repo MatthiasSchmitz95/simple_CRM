@@ -41,12 +41,16 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SearchComponent } from './search/search.component';
-import {MatRadioModule} from '@angular/material/radio';
+import { MatRadioModule } from '@angular/material/radio';
 import { CustomerChartComponent } from './customer-chart/customer-chart.component';
 import { MobileNavbarComponent } from './mobile-navbar/mobile-navbar.component';
 import { ImprintComponent } from './imprint/imprint.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { DialogAddContractComponent } from './dialog-add-contract/dialog-add-contract.component';
+import { DialogEditContractComponent } from './dialog-edit-contract/dialog-edit-contract.component';
+import { NumberFormatPipe } from './number-format.pipe';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
@@ -69,7 +73,10 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     CustomerChartComponent,
     MobileNavbarComponent,
     ImprintComponent,
-    PrivacyPolicyComponent
+    PrivacyPolicyComponent,
+    DialogAddContractComponent,
+    DialogEditContractComponent,
+    NumberFormatPipe
   ],
   imports: [
     BrowserModule,
@@ -86,6 +93,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatDatepickerModule,
     MatNativeDateModule,
     MatProgressBarModule,
+    MatSelectModule,
     FormsModule,
     MatProgressBarModule,
     MatCardModule,
@@ -103,7 +111,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     AngularFireStorageModule,
     AngularFireDatabaseModule,
 
-    
+
 
   ],
   providers: [{ provide: FIREBASE_OPTIONS, useValue: environment.firebase }],

@@ -37,11 +37,6 @@ export class DialogAddUserComponent {
 
   saveUser() {
     this.loading = true;
-    console.log(this.user.birthDate);
-    
-    //if (this.user.birthDate != '') {
-    //  this.convertDate();
-    //}
     const userRef = collection(this.firestore, `users/${this.authService.userData.uid}/customer`);
     addDoc(userRef, this.user.toJson())
       .then(() => {

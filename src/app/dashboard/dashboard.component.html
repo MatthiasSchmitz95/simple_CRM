@@ -1,14 +1,27 @@
-
 <mat-card class="mb-16" [class.darkmode-background-black]="this.dm.isChecked">
 
-    <div class="user-count-container p-24">
-        <img src="assets/profile-img.png" alt="">
-        <p>{{userCount}} 
-    </div>
+  <div class="user-count-container p-24">
+    <img src="assets/profile-img.png" alt="">
+    <p>{{userCount}}
+  </div>
+</mat-card>
 
+<div class="mb-16 sales-container">
+  <mat-card class="mr-16 sales" [class.darkmode-background-black]="this.dm.isChecked">
+    <mat-card-title class="p-24">Sales volume</mat-card-title>
+    <div class="money">{{salesVolume | numberFormat}} $</div>
   </mat-card>
+  <mat-card class="mr-16 sales" [class.darkmode-background-black]="this.dm.isChecked">
+    <mat-card-title class="p-24">Expenses</mat-card-title>
+    <div class="money">{{expenses | numberFormat}} $</div>
+  </mat-card>
+  <mat-card class="sales" [class.darkmode-background-black]="this.dm.isChecked">
+    <mat-card-title class="p-24">Profit</mat-card-title>
+    <div class="money">{{profit | numberFormat}} $</div>
+  </mat-card>
+</div>
 
-  <mat-card class="aligned" [class.darkmode-background-black]="this.dm.isChecked">
-    <mat-card-title>Customers in Cities</mat-card-title>
-    <app-customer-chart ></app-customer-chart>
-  </mat-card>
+<mat-card class="aligned mobile-mb-64" [class.darkmode-background-black]="this.dm.isChecked">
+  <mat-card-title>Customers in Cities</mat-card-title>
+  <app-customer-chart></app-customer-chart>
+</mat-card>

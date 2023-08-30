@@ -10,6 +10,8 @@ import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.compo
 import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
 import { AuthService } from '../services/auth.service';
 import { DarkmodeService } from '../services/darkmode.service';
+import { DialogAddContractComponent } from '../dialog-add-contract/dialog-add-contract.component';
+import { DialogEditContractComponent } from '../dialog-edit-contract/dialog-edit-contract.component';
 
 @Component({
   selector: 'app-user-details',
@@ -24,7 +26,9 @@ export class UserDetailsComponent implements OnInit {
   bDate;
   newNote = '';
   existingNotes = [];
+  existingContracts= [];  
   filledNotes = false;
+
 
   constructor(private route: ActivatedRoute, private crud: CrudService, public authService: AuthService, public dialog: MatDialog, public firestore: Firestore, public dm:DarkmodeService) { }
 
@@ -32,6 +36,7 @@ export class UserDetailsComponent implements OnInit {
     this.route.paramMap.subscribe(paramMap => {
       this.customerId = paramMap.get('id');
       this.getUserById(this.customerId);
+      this.crud.customerId = this.customerId;
     })
   }
 
@@ -40,9 +45,13 @@ export class UserDetailsComponent implements OnInit {
     userArr.subscribe((user) => {
       this.user = new User(user);
       this.existingNotes = this.user.notes;
+      this.crud.existingContracts = this.user.contracts;
+      this.existingContracts = this.user.contracts;
       this.checkForNotes();
-
-      if (this.user.birthDate != '') {
+      console.log(this.user,'daten');
+      console.log(this.user.contracts);
+      
+            if (this.user.birthDate != '') {
         this.user.birthDate = this.user.birthDate.toDate();
         this.convertDate();
       }
@@ -58,7 +67,6 @@ export class UserDetailsComponent implements OnInit {
       else this.filledNotes = false;
       
     }
-
 
   }
 
@@ -76,19 +84,12 @@ export class UserDetailsComponent implements OnInit {
   }
 
 
-
-
-
   convertDate() {
     const month = this.user.birthDate.getMonth() + 1;
     const day = this.user.birthDate.getDate();
     const year = this.user.birthDate.getFullYear();
     this.bDate = `${month}/${day}/${year}`;
     console.log(this.bDate);
-
-  }
-
-  openAddressDialog() {
 
   }
 
@@ -102,7 +103,18 @@ export class UserDetailsComponent implements OnInit {
     const dialog = this.dialog.open(DialogEditUserComponent);
     dialog.componentInstance.user = new User(this.user.toJson());
     dialog.componentInstance.userId = this.customerId;
+  }
 
+  openAddContract() {
+    const dialog = this.dialog.open(DialogAddContractComponent);
+    dialog.componentInstance.user = new User(this.user.toJson());
+    dialog.componentInstance.userId = this.customerId;
+  }
+
+  openEditContract() {
+    const dialog = this.dialog.open(DialogEditContractComponent);
+    dialog.componentInstance.user = new User(this.user.toJson());
+    dialog.componentInstance.userId = this.customerId;
   }
 
   deleteUser() {
@@ -112,8 +124,10 @@ export class UserDetailsComponent implements OnInit {
 
   copyToClipboard(id) {
     // Get the text you want to copy
-    const textToCopyElement: HTMLElement | null = document.getElementById(id);
-    const textToCopy: string = textToCopyElement ? textToCopyElement.textContent ?? '' : '';
+    const textToCopyElement1: HTMLElement | null = document.getElementById(id);
+
+
+    const textToCopy: string = textToCopyElement1 ? textToCopyElement1.textContent ?? '' : '';
 
     // Create a temporary textarea element to copy the text
     const tempTextarea: HTMLTextAreaElement = document.createElement('textarea');

@@ -7,7 +7,7 @@
       <mat-icon >security</mat-icon> Policy
     </li>
     <li>
-      <mat-slide-toggle [(ngModel)]="this.dm.isChecked"></mat-slide-toggle>
+      <mat-slide-toggle [(ngModel)]="this.dm.isChecked" (change)="this.chart.recreateChart()"></mat-slide-toggle>
       Darkmode
     </li>
   </ul>
