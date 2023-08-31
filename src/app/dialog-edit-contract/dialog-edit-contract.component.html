@@ -1,32 +1,36 @@
 <form (ngSubmit)="editContract()">
     <div mat-dialog-content class="form-container">
         <h3 mat-dialog-title>Edit Contract</h3>
-        
+
         <mat-form-field>
             <mat-label>Contract name</mat-label>
-            <mat-select [(ngModel)]="selectedContract" (ngModelChange)="updateSelectedContractData()" name="selectedContract">
+            <mat-select [(ngModel)]="selectedContract" (ngModelChange)="updateSelectedContractData()"
+                name="selectedContract">
                 <mat-option *ngFor="let contract of user.contracts" [value]="contract.name">
                     {{ contract.name }}
                 </mat-option>
             </mat-select>
         </mat-form-field>
-        
+
         <div>
             <mat-form-field>
                 <mat-label>Income</mat-label>
                 <span style="margin-left: 5px;" matPrefix>$&nbsp;</span>
                 <input type="number" matInput placeholder="Income" [(ngModel)]="selectedIncome" name="income">
             </mat-form-field>
-    
+
             <mat-form-field>
                 <mat-label>Expense</mat-label>
                 <span style="margin-left: 5px;" matPrefix>$&nbsp;</span>
                 <input type="number" matInput placeholder="Expense" [(ngModel)]="selectedExpense" name="expense">
             </mat-form-field>
         </div>
-        <div>
-            <button mat-raised-button type="button" (click)="closeDialog()">Cancel</button>
-            <button mat-raised-button type="submit" color="primary">Save</button>
+        <div class="button-container" >
+            <div>
+                <button class="mr-16" mat-raised-button type="button" (click)="closeDialog()">Cancel</button>
+                <button mat-raised-button type="submit" color="primary">Save</button>
+            </div>
+
             <button mat-raised-button type="button" color="warn" (click)="deleteContract()">Delete</button>
         </div>
     </div>

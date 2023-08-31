@@ -53,6 +53,7 @@ export class DialogAddContractComponent {
     }
     this.crud.existingContracts.push(this.newContract);
     this.crud.updateCustomerContract(this.customerId, this.crud.existingContracts);
+    this.closeDialog();
 
   }
 

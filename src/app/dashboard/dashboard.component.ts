@@ -60,10 +60,22 @@ export class DashboardComponent implements OnInit {
     });
     this.expenses = this.sumArray(this.expense);
     this.salesVolume = this.sumArray(this.income);
-    this.profit = this.salesVolume - this.expenses;
+    this.calculateProfit();
+    
     console.log(this.salesVolume);
     console.log(this.profit);
     console.log(this.expenses);
+  }
+
+  calculateProfit(){
+    this.profit = this.salesVolume - this.expenses;
+    if(this.profit < 0){
+      document.getElementById('profit').style.color = 'red';
+    }
+    else{
+      document.getElementById('profit').style.color = 'green';
+    }
+
   }
 
   sumArray(array) {

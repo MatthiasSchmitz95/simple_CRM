@@ -18,6 +18,8 @@ export class LoginComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
   });
+  email;
+  password;
 
   // Method to handle form submission
   onSubmit() {
@@ -40,16 +42,8 @@ export class LoginComponent implements OnInit {
 
 
   loginCheck(email, password) {
-
     this.authService.SignIn(email, password)
-      .catch((error) => {
-        window.alert(error.message);
-        this.userName.nativeElement.classList.add('custom-border-red');
-        this.userPassword.nativeElement.classList.add('custom-border-red');
-      }
-      );
-
-
+      
   }
 
 }

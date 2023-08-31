@@ -26,7 +26,6 @@ export class DialogEditContractComponent implements OnInit {
   selectedExpense: number = 0; 
   contracts = []
 
-
   constructor(public dialogRef: MatDialogRef<DialogEditContractComponent>, public crud: CrudService, public firestore: Firestore, public authService: AuthService) { }
 
   ngOnInit(): void {
@@ -57,7 +56,6 @@ export class DialogEditContractComponent implements OnInit {
   closeDialog() {
     this.dialogRef.close();
   }
-
 
   deleteContract() {
     const selectedContractIndex = this.contracts.findIndex(contract => contract.name === this.selectedContract);

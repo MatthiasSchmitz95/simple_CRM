@@ -1,0 +1,39 @@
+<mat-card class="mb-16" [class.darkmode-background-black]="this.dm.isChecked">
+    <mat-card-title class="p-24">Currency calculator</mat-card-title>
+    <div class="p-24">
+        <div>
+            <mat-form-field >
+                <mat-label>Input</mat-label>
+                <input matInput>
+            </mat-form-field>
+            <mat-form-field class="currency">
+                <mat-label>currencies</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let currency of currencies" [value]="currency.value">
+                        {{currency.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+
+        <div>
+            <mat-form-field>
+                <mat-label>Input</mat-label>
+                <input matInput>
+            </mat-form-field>
+            <mat-form-field class="currency">
+                <mat-label>currencies</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let currency of currencies" [value]="currency.value">
+                        {{currency.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+
+
+    </div>
+
+</mat-card>

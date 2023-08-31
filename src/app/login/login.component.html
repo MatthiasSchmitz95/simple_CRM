@@ -1,14 +1,14 @@
         <div class="mobile">
             <h3 class="mt-32 mb-32">Login</h3>
-            <form (ngSubmit)="onSubmit()">
+            <form (ngSubmit)="loginCheck(email,password)">
             <mat-form-field class="mr-16" appearance="outline">
                 <mat-label [class.darkmode-input]="this.dm.isChecked">Email</mat-label>
-                <input [class.darkmode-input]="this.dm.isChecked"class="custom-border-red" matInput type="text" placeholder="Email" #userName required>
+                <input [class.darkmode-input]="this.dm.isChecked"class="custom-border-red" [(ngModel)]="email" name="email" matInput type="text" placeholder="Email" #userName required>
             </mat-form-field>
             <div>
                 <mat-form-field class="mr-16" appearance="outline">
                     <mat-label [class.darkmode-input]="this.dm.isChecked">Password</mat-label>
-                    <input [class.darkmode-input]="this.dm.isChecked" matInput type="password" placeholder="password" #userPassword required>
+                    <input [class.darkmode-input]="this.dm.isChecked" matInput type="password" [(ngModel)]="password" name="password" placeholder="password" #userPassword required>
                 </mat-form-field>
             </div>
             <!-- Calling SignIn Api from AuthService -->
