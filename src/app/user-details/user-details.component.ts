@@ -20,7 +20,7 @@ import { DialogEditContractComponent } from '../dialog-edit-contract/dialog-edit
 
 })
 export class UserDetailsComponent implements OnInit {
-  userId = '';
+  userId;
   user = new User();
   customerId;
   bDate;
@@ -28,35 +28,41 @@ export class UserDetailsComponent implements OnInit {
   existingNotes = [];
   existingContracts= [];  
   filledNotes = false;
+  loadedUser=[];
 
 
-  constructor(private route: ActivatedRoute, private crud: CrudService, public authService: AuthService, public dialog: MatDialog, public firestore: Firestore, public dm:DarkmodeService) { }
+  constructor(private route: ActivatedRoute, private crud: CrudService, public authService: AuthService, public dialog: MatDialog, public firestore: Firestore, public dm:DarkmodeService) {
+    this.authService.afAuth.setPersistence('local');
+   }
 
-  ngOnInit() {
-    this.route.paramMap.subscribe(paramMap => {
-      this.customerId = paramMap.get('id');
-      this.getUserById(this.customerId);
-      this.crud.customerId = this.customerId;
-    })
+   ngOnInit() {
+    this.authService.afAuth.authState.subscribe((user) => {
+      if (user) {
+        this.userId = user.uid;
+        this.crud.userId = this.userId;
+        console.log(this.userId, 'klappt?');
+        this.route.paramMap.subscribe((paramMap) => {
+          this.customerId = paramMap.get('id');
+          this.getUserById(this.crud.userId, this.customerId);
+          this.crud.customerId = this.customerId;
+        });
+      } 
+    });
   }
+  
 
-  getUserById(customerId) {
-    const userArr = this.crud.getUserById(customerId);
+  getUserById(userId,customerId) {
+    const userArr = this.crud.getCustomerById(userId,customerId);
     userArr.subscribe((user) => {
       this.user = new User(user);
       this.existingNotes = this.user.notes;
       this.crud.existingContracts = this.user.contracts;
       this.existingContracts = this.user.contracts;
       this.checkForNotes();
-      console.log(this.user,'daten');
-      console.log(this.user.contracts,  'contracts');
-      
             if (this.user.birthDate != '') {
         this.user.birthDate = this.user.birthDate.toDate();
         this.convertDate();
-      }
-
-    })
+      }    })
   }
 
   checkForNotes() {
@@ -64,8 +70,7 @@ export class UserDetailsComponent implements OnInit {
       if (this.existingNotes.length > 0) {
         this.filledNotes = true;
       }
-      else this.filledNotes = false;
-      
+      else this.filledNotes = false;    
     }
 
   }
@@ -119,14 +124,11 @@ export class UserDetailsComponent implements OnInit {
 
   deleteUser() {
     this.crud.deleteUser(this.customerId);
-
   }
 
   copyToClipboard(id) {
     // Get the text you want to copy
     const textToCopyElement1: HTMLElement | null = document.getElementById(id);
-
-
     const textToCopy: string = textToCopyElement1 ? textToCopyElement1.textContent ?? '' : '';
 
     // Create a temporary textarea element to copy the text

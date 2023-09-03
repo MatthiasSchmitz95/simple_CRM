@@ -1,39 +1,34 @@
-<mat-card class="mb-16" [class.darkmode-background-black]="this.dm.isChecked">
-    <mat-card-title class="p-24">Currency calculator</mat-card-title>
-    <div class="p-24">
+<mat-card  class="mb-16 content p-24" [class.darkmode-background-black]="this.dm.isChecked">
+    <mat-card-title>Currency calculator</mat-card-title>
+    <div class="mt-32" >
         <div>
-            <mat-form-field >
+            <mat-form-field class="input-width" >
                 <mat-label>Input</mat-label>
-                <input matInput>
+                <input matInput id="currency-1" [(ngModel)]="amount" value="1" type="number" (ngModelChange)="calculate()">
             </mat-form-field>
             <mat-form-field class="currency">
                 <mat-label>currencies</mat-label>
-                <mat-select>
-                    <mat-option *ngFor="let currency of currencies" [value]="currency.value">
+                <mat-select [(ngModel)]="fromCurrency" (ngModelChange)="calculate()">
+                    <mat-option *ngFor="let currency of currencies" [value]="currency.name">
                         {{currency.name}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
 
-
         <div>
-            <mat-form-field>
-                <mat-label>Input</mat-label>
-                <input matInput>
+            <mat-form-field class="input-width">
+                <mat-label style="color: black;">Output</mat-label>
+                <input matInput style="color: black;" id="currency-2" [(ngModel)]="calculatedNumber" disabled>
             </mat-form-field>
             <mat-form-field class="currency">
                 <mat-label>currencies</mat-label>
-                <mat-select>
-                    <mat-option *ngFor="let currency of currencies" [value]="currency.value">
+                <mat-select [(ngModel)]="toCurrency" (ngModelChange)="calculate()">
+                    <mat-option *ngFor="let currency of currencies" [value]="currency.name">
                         {{currency.name}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
-
-
-
     </div>
-
 </mat-card>

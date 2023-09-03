@@ -37,33 +37,33 @@ export class AuthService {
       }
     });
   }
-// Sign in with email/password
- async SignIn(email: string, password: string) {
-   try {
-    
-     const result = await this.afAuth.signInWithEmailAndPassword(email, password);
-     console.log('Ergebnis', result,email,password);
-     // Wait for the getUserName() function to finish before proceeding
-     await new Promise((resolve, reject) => {
-       this.afAuth.authState.subscribe((user) => {
-         if (user) {
-           resolve(user);
-         } else {
-           reject(new Error("User not found"));
-         }
-       });
-     });
-     await this.getUserName(result.user.uid); // Wait for this.getUserName() to finish
-     this.SetUserData(result.user, this.displayName);
-     this.router.navigate(['dashboard/' + result.user.uid]);
-   } catch (error) {
-     console.error("Sign-in failed:", error);
-   }
- }
-deleteUser(){
-  this.afAuth.currentUser.then(user => user?.delete());
-  this.SignOut();
-}
+  // Sign in with email/password
+  async SignIn(email: string, password: string) {
+    try {
+
+      const result = await this.afAuth.signInWithEmailAndPassword(email, password);
+      console.log('Ergebnis', result, email, password);
+      // Wait for the getUserName() function to finish before proceeding
+      await new Promise((resolve, reject) => {
+        this.afAuth.authState.subscribe((user) => {
+          if (user) {
+            resolve(user);
+          } else {
+            reject(new Error("User not found"));
+          }
+        });
+      });
+      await this.getUserName(result.user.uid); // Wait for this.getUserName() to finish
+      this.SetUserData(result.user, this.displayName);
+      this.router.navigate(['dashboard/' + result.user.uid]);
+    } catch (error) {
+      console.error("Sign-in failed:", error);
+    }
+  }
+  deleteUser() {
+    this.afAuth.currentUser.then(user => user?.delete());
+    this.SignOut();
+  }
 
   async getUserName(id) {
     let userRef = doc(this.firestore, 'users', `${id}`);
@@ -83,8 +83,8 @@ deleteUser(){
         up and returns promise */
         this.SendVerificationMail();
         this.SetUserData(result.user, name)
-       ;
-        
+          ;
+
 
       })
   }

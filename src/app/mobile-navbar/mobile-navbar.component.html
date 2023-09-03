@@ -1,3 +1,4 @@
+<div></div>
 <mat-menu #menuSettings="matMenu">
   <ul class="more-menu-items">
     <li id="imprint" routerLink="/imprint" >
@@ -14,7 +15,7 @@
 </mat-menu>
 
 <ul class="menu-items" *ngIf="this.authService.isLoggedIn">
-    <li id="dashboard" routerLink="/dashboard/{{userId}}" (click)="select('dashboard')">
+    <li id="dashboardm" routerLink="/dashboard/{{userId}}" (click)="select('dashboardm')">
       <mat-icon >dashboard</mat-icon> Dashboard
     </li>
     <li id="user" routerLink="/user" (click)="select('user')">

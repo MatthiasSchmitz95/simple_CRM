@@ -50,6 +50,7 @@
 </mat-card>
 
 <mat-card class="mt-32 p-24" [class.darkmode-background-black]="this.dm.isChecked">
+    
     <button class="pin-upper-right-corner" [matMenuTriggerFor]="contractMenu" mat-icon-button>
         <mat-icon>more_vert</mat-icon>
     </button>
@@ -69,9 +70,12 @@
             <td> {{ contract.income }} $</td>
             <td> {{ contract.expense }} $</td>
         </tr>
-            
-        
     </table>
+    <div class="btn-container mt-16">
+        <button (click)="openAddContract()" class="add-contract-bt" mat-fab color="primary">
+            <mat-icon>add</mat-icon>
+          </button>
+    </div>
 
 </mat-card>
 
@@ -85,7 +89,6 @@
                <p class="mr-90">{{ note }}</p> 
               <button class="note-item-button" mat-raised-button color="warn" (click)="deleteNote(i)">X</button>
              </div>
-
             </li>
           </ul>
     </mat-card>
@@ -95,9 +98,9 @@
 <mat-card class="mt-32 p-24 mobile-mb-100" [class.darkmode-background-black]="this.dm.isChecked">
     <form (submit)="pushNote()" #noteForm="ngForm">
     <mat-card-title class="mb-16">Write note</mat-card-title>
-    <mat-form-field class="mr-16">
+    <mat-form-field class="mr-16" style="width: 300px;">
         <mat-label>Textarea</mat-label>
-        <textarea id="notes" [(ngModel)]="newNote" name="newNote" matInput required ngModel #newNoteModel="ngModel"></textarea>
+        <textarea id="notes" [(ngModel)]="newNote" name="newNote" matInput  ngModel #newNoteModel="ngModel" required></textarea>
     </mat-form-field>
     <button class="save-button" type="submit" mat-raised-button color="primary" [disabled]="!noteForm.form.valid">Save</button>
 </form>

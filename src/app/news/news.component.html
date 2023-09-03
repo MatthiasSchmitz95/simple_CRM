@@ -1,0 +1,13 @@
+<mat-card class="content mb-16 p-24" [class.darkmode-background-black]="this.dm.isChecked">
+    <mat-card-title class="pb-24">Stock news</mat-card-title>
+    <div class="news-container">
+    <div class="link-container" *ngFor="let news of savedNews">
+        <h6>{{news.title}}</h6>
+        <a href="{{news.url}}"[class.darkmode-background-black]="this.dm.isChecked">
+            <img class="news-img" src="{{news.image_url}}" alt="">
+            <div>{{news.description}}</div>
+        </a>
+    </div>
+</div>
+    <button style="display: none;" (click)="getNews()"> get News</button>
+</mat-card>

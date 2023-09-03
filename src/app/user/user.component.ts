@@ -27,6 +27,7 @@ export class UserComponent implements OnInit {
     this.authService.afAuth.authState.subscribe((user) => {
       if (user) {
         this.userId = this.authService.userData.uid; 
+        this.crud.userId = this.userId;
         this.crud.getUser()
         .subscribe((result: User[]) => {
           this.loadedUser = result;

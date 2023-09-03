@@ -1,3 +1,25 @@
 .currency{
-    width: 80px;
+    width: 95px;
+    margin-left: -4px;
+}
+
+.content{
+    height: 285px;
+}
+
+.input-width{
+    width: 65%;
+}
+
+
+cdk-overlay-pane{
+    width: 95px !important;
+    
+    
+}
+
+@media(max-width:1050px){
+    .content{
+        width: 100%;
+    }
 }

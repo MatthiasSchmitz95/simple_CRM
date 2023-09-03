@@ -31,6 +31,10 @@ h3{
     padding-left: 40px !important;
 }
 
+.pb-24{
+    padding-bottom: 24px !important;
+}
+
 .mt-32{
     margin-top: 32px !important;
 }
@@ -119,14 +123,18 @@ h3{
   }
 
   .darkmode-background{
-    background-color: #464646 !important;
+    background-color: #0a011d!important;
     color: white !important;
   }
 
   .darkmode-background-black{
     background-color: #292929 !important;
     color: white !important;
+  }
 
+  .darkmode-background-header{
+    background-color: #030d49 !important;
+    
   }
 
   .darkmode-input{

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { ChartService } from '../services/chart.service';
 import { DarkmodeService } from '../services/darkmode.service';
@@ -16,12 +16,10 @@ export class MobileNavbarComponent implements OnInit {
     this.authService.afAuth.authState.subscribe((user) => {
       if (user) {
         this.userId = this.authService.userData.uid;    
-        console.log('uid is',this.userId)
-      }
-  
-     });
-    
+      }});
   }
+
+
 
   select(id){
     this.deleteSelection()
@@ -31,7 +29,7 @@ export class MobileNavbarComponent implements OnInit {
   deleteSelection(){
     document.getElementById('account').classList.remove('teal');
     document.getElementById('user').classList.remove('teal');
-    document.getElementById('dashboard').classList.remove('teal');
+    document.getElementById('dashboardm').classList.remove('teal');
     document.getElementById('more').classList.remove('teal');
 
   }

@@ -10,22 +10,23 @@ import { AuthService } from './auth.service';
 })
 export class CrudService {
   user = new User();
+  userId;
   userData: any;
   customerId;
   existingContracts = [];
 
-  constructor(public firestore: Firestore, public authService: AuthService, public route:ActivatedRoute) { }
+  constructor(public firestore: Firestore, public authService: AuthService, public route: ActivatedRoute) { }
 
-  addUser(user){
+  addUser(user) {
     const userInstance = collection(this.firestore, 'user')
     addDoc(userInstance, user.toJson())
-    .then(()=> {
-      console.log("User saved");
-    })
-    .catch((e)=>{
-      console.log(e);
-      
-    })
+      .then(() => {
+        console.log("User saved");
+      })
+      .catch((e) => {
+        console.log(e);
+
+      })
   }
 
   saveUser() {
@@ -36,22 +37,37 @@ export class CrudService {
       });
   }
 
+  saveNews(newNews) {
+    const newsRef = doc(this.firestore, 'news','OHVkJs8lyypaDo5TsJW6');
+    updateDoc(newsRef, {news: newNews})
+  }
+
+  getNews(){
+    const newsRef = doc(this.firestore,'news','OHVkJs8lyypaDo5TsJW6');
+    return docData(newsRef, {idField: 'id'}) as Observable<any>;
+  }
+
   getUser(): Observable<User[]> {
     const userRef = this.getSubCollectionRef('users', 'customer', this.authService.userData.uid);
     return collectionData(userRef, { idField: 'id' }) as Observable<User[]>;
   }
 
-  getCollectionRef(collectionName: string){
+  getCollectionRef(collectionName: string) {
     return collection(this.firestore, collectionName);
   }
 
-  getSubCollectionRef(collectionName: string, subCollectionName, collectionDocId:string){
+  getSubCollectionRef(collectionName: string, subCollectionName, collectionDocId: string) {
     return collection(this.firestore, collectionName, `${collectionDocId}/${subCollectionName}`);
   }
-  
+
 
   getUserById(userId) {
-    const userIdRef = doc(this.firestore, `users/${this.authService.userData.uid}/customer/${userId}`);
+    const userIdRef = doc(this.firestore, `users/${this.userId}/customer/${userId}`);    
+    return docData(userIdRef, { idField: 'id' }) as Observable<User[]>;
+  }
+
+  getCustomerById(userId,customerId) {
+    const userIdRef = doc(this.firestore, `users/${userId}/customer/${customerId}`);    
     return docData(userIdRef, { idField: 'id' }) as Observable<User[]>;
   }
 
@@ -61,18 +77,18 @@ export class CrudService {
 
   }
 
-  updateCustomerNotes(userId,note) {
+  updateCustomerNotes(userId, note) {
     const userIdRef = doc(this.firestore, 'users', `${this.authService.userData.uid}/customer/${userId}`);
-    return updateDoc(userIdRef, {notes:note})
+    return updateDoc(userIdRef, { notes: note })
 
   }
 
-  updateCustomerContract(userId,contract) {
+  updateCustomerContract(userId, contract) {
     const userIdRef = doc(this.firestore, 'users', `${this.authService.userData.uid}/customer/${userId}`);
-    return updateDoc(userIdRef, {contracts:contract})
+    return updateDoc(userIdRef, { contracts: contract })
 
   }
-  setCustomerContract(userId,contract) {
+  setCustomerContract(userId, contract) {
     const userIdRef = doc(this.firestore, 'users', `${this.authService.userData.uid}/customer/${userId}`);
     return setDoc(userIdRef, contract)
 

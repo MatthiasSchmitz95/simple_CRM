@@ -1,8 +1,8 @@
 <div class="row mb-32">
 
-    <mat-form-field class="mr-16" appearance="outline" [class.darkmode-background-black]="this.dm.isChecked">
-        <mat-label [class.darkmode-background-black]="this.dm.isChecked">Search</mat-label>
-        <input [class.darkmode-background-black]="this.dm.isChecked" matInput type="text" name="searchTerm" #name="ngModel" [(ngModel)]="searchTerm"
+    <mat-form-field class="mr-16 custom-mat-form-field" appearance="outline" [class.darkmode-background-black]="this.dm.isChecked">
+        <mat-label class="white-placeholder" [class.darkmode-background-black]="this.dm.isChecked">Search</mat-label>
+        <input [class.darkmode-background-black]="this.dm.isChecked" (input)="onSearchCustomer()" [class.darkmode-background-black]="this.dm.isChecked" matInput type="text" name="searchTerm" #name="ngModel" [(ngModel)]="searchTerm"
             placeholder="Search" />
     </mat-form-field>
 

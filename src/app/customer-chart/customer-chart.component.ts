@@ -53,6 +53,8 @@ export class CustomerChartComponent {
     await Promise.all(countPromises);
 
     const ctx = this.myChartCanvas.nativeElement.getContext('2d');
+    this.chart.kind ='bar';
+    this.chart.y = true;
     this.chart.createChart(ctx)
 
   }

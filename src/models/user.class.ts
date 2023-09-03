@@ -10,6 +10,7 @@ export class User {
     gender: string;
     notes: any;
     contracts: [];
+  
 
     constructor(obj?: any) {
         this.firstName = obj ? obj.firstName : '';
@@ -23,6 +24,7 @@ export class User {
         this.gender = obj ? obj.gender : '';
         this.notes = obj ? obj.notes: [];
         this.contracts = obj ? obj.contracts: [];
+        
 
 
     }
@@ -39,7 +41,8 @@ export class User {
             phone: this.phone,
             gender: this.gender,
             notes: this.notes,
-            contracts: this.contracts
+            contracts: this.contracts,
+           
 
         }
 

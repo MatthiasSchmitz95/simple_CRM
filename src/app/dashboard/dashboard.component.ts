@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CrudService } from '../services/crud.service';
 import { Firestore, collection, doc, getCountFromServer, getDocs, query, where } from '@angular/fire/firestore';
 import { AuthService } from '../services/auth.service';
 import { User } from 'src/models/user.class';
 import { Observable } from 'rxjs';
 import { DarkmodeService } from '../services/darkmode.service';
+import { ChartService } from '../services/chart.service';
 
 
 @Component({
@@ -12,9 +13,10 @@ import { DarkmodeService } from '../services/darkmode.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, AfterViewInit {
   userCount;
   user = new User()
+  uid
   customers$: Observable<any[]>;
   cityList = [];
   income = [];
@@ -22,19 +24,30 @@ export class DashboardComponent implements OnInit {
   salesVolume: number | null = null;
   expenses: number | null = null;
   profit: number | null = null;
-  constructor(public crud: CrudService, public firestore: Firestore, public authService: AuthService, public dm: DarkmodeService) {
-
+  constructor(public crud: CrudService, public firestore: Firestore, public authService: AuthService, public dm: DarkmodeService, public chart:ChartService) {
   }
+  @ViewChild('profitElement', { static: false }) profitElement: ElementRef;
   ngOnInit() {
     this.authService.afAuth.authState.subscribe((user) => {
       if (user) {
+        this.uid = user.uid;
         this.countCollection(user.uid);
-        this.getIncome(user.uid);
-
+        this.getIncome(this.uid);
       }
     });
+  }
 
+  ngAfterViewInit(): void {
+    const element = document.querySelector('#dashboard');
+    if (element) {
+      element.classList.add('clicked');
 
+    }
+    const elementMobile = document.querySelector('#dashboardm');
+    if (elementMobile) {
+      elementMobile.classList.add('teal');
+
+    }
   }
 
   async countCollection(useruid) {
@@ -61,19 +74,14 @@ export class DashboardComponent implements OnInit {
     this.expenses = this.sumArray(this.expense);
     this.salesVolume = this.sumArray(this.income);
     this.calculateProfit();
-    
-    console.log(this.salesVolume);
-    console.log(this.profit);
-    console.log(this.expenses);
+
   }
 
-  calculateProfit(){
+  calculateProfit() {
     this.profit = this.salesVolume - this.expenses;
-    if(this.profit < 0){
-      document.getElementById('profit').style.color = 'red';
-    }
-    else{
-      document.getElementById('profit').style.color = 'green';
+    const profitElement = this.profitElement.nativeElement;
+    if (profitElement) {
+      profitElement.style.color = this.profit < 0 ? 'red' : 'green';
     }
 
   }

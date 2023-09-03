@@ -5,26 +5,26 @@
     </div>
 
     <ul class="menu-items">
-      <li id="imprint" routerLink="/dashboard/{{userId}}">
+      <li (click)="clickedRider('dashboard')" id="dashboard" routerLink="/dashboard/{{userId}}">
         <mat-icon>dashboard</mat-icon> Dashboard
       </li>
-      <li id="customer" routerLink="/user">
+      <li (click)="clickedRider('customer')" id="customer" routerLink="/user">
         <mat-icon>person</mat-icon> Customer
       </li>
-      <li routerLink="/profile/{{userId}}">
+      <li (click)="clickedRider('profile')" id="profile" routerLink="/profile/{{userId}}">
         <mat-icon>account_circle</mat-icon> Profile
       </li>
     </ul>
 
     <ul class="menu-items mt-231">
-      <li id="imprint" routerLink="/imprint">
+      <li (click)="clickedRider('imprint')" id="imprint" routerLink="/imprint">
         <mat-icon>list_alt_icon</mat-icon> Imprint
       </li>
-      <li id="imprint" routerLink="/private-policy">
+      <li (click)="clickedRider('policy')" id="policy" routerLink="/private-policy">
         <mat-icon>security</mat-icon> Private policy
       </li>
       <li>
-        <mat-slide-toggle [(ngModel)]="this.dm.isChecked" (change)="this.chart.recreateChart()"></mat-slide-toggle>
+        <mat-slide-toggle [(ngModel)]="this.dm.isChecked" (change)="this.chart.recreateChart();this.dm.changeRider()"></mat-slide-toggle>
         Darkmode
       </li>
     </ul>
@@ -32,7 +32,7 @@
 
   <div class="example-sidenav-content" [class.darkmode-background]="this.dm.isChecked">
     <mat-toolbar color="primary" class="toolbar">
-      <mat-toolbar-row>
+      <mat-toolbar-row [class.darkmode-background-header]="this.dm.isChecked">
         <div class="logo-container mobile-logo">
           <img src="assets/Logo/logo.png" alt="">
         </div>
@@ -44,7 +44,7 @@
             <img src="assets/Logo/logo.png" alt="">
           </div>
         </div>
-        <button mat-raised-button [class.darkmode-background]="isChecked" (click)="authService.SignOut()" *ngIf="authService.isLoggedIn" routerLink="/login">Logout</button>
+        <button mat-raised-button [class.darkmode-background]="isChecked" (click)="this.dm.turnDmOff();authService.SignOut() " *ngIf="authService.isLoggedIn" routerLink="/login">Logout</button>
       </mat-toolbar-row>
     </mat-toolbar>
     <div class="router-container">

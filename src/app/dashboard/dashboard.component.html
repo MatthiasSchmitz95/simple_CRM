@@ -16,10 +16,14 @@
   </mat-card>
   <mat-card class="sales" [class.darkmode-background-black]="this.dm.isChecked">
     <mat-card-title class="p-24">Profit</mat-card-title>
-    <div id="profit" class="money">{{profit | numberFormat}} $</div>
+    <div id="profit" #profitElement class="money">{{profit | numberFormat}} $</div>
   </mat-card>
 </div>
-<app-exchange-rate></app-exchange-rate>
+<div class="flex-centered">
+  <app-exchange-rate class="content mr-16"></app-exchange-rate>
+  <app-news class="content"></app-news>
+</div>
+
 
 <mat-card class="aligned mobile-mb-64" [class.darkmode-background-black]="this.dm.isChecked">
   <mat-card-title>Customers in Cities</mat-card-title>

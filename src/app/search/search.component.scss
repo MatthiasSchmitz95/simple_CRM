@@ -1,6 +1,7 @@
 .row{
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 mat-form-field{
@@ -13,10 +14,16 @@ mat-form-field{
     flex-direction: column;
     display: flex;
     gap: 2px;
+
 }
-
-
   
+.mat-form-field.mat-focused .mat-input-element::placeholder {
+    color: white; /* Set the placeholder text color to white when focused */
+  }
+.white-placeholder::placeholder {
+    color: white; /* Set the placeholder text color to white */
+  }
+
   .mat-form-field.darkmode-background-black .mat-form-field-placeholder,
   .mat-form-field.darkmode-background-black .mat-input-element::placeholder {
     color: white; /* Change this to the color you want */

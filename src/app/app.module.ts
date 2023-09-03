@@ -52,6 +52,7 @@ import { DialogEditContractComponent } from './dialog-edit-contract/dialog-edit-
 import { NumberFormatPipe } from './number-format.pipe';
 import { MatSelectModule } from '@angular/material/select';
 import { ExchangeRateComponent } from './exchange-rate/exchange-rate.component';
+import { NewsComponent } from './news/news.component';
 
 
 
@@ -78,7 +79,8 @@ import { ExchangeRateComponent } from './exchange-rate/exchange-rate.component';
     DialogAddContractComponent,
     DialogEditContractComponent,
     NumberFormatPipe,
-    ExchangeRateComponent
+    ExchangeRateComponent,
+    NewsComponent
   ],
   imports: [
     BrowserModule,

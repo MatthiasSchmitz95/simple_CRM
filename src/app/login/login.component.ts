@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Firestore, collection, doc, docData } from '@angular/fire/firestore';
 import { DarkmodeService } from '../services/darkmode.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -13,11 +13,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
   @ViewChild('userName') userName: ElementRef;
   @ViewChild('userPassword') userPassword: ElementRef;
-
-  loginForm: FormGroup = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required]),
-  });
+  loginForm: FormGroup;
   email;
   password;
 
@@ -27,23 +23,30 @@ export class LoginComponent implements OnInit {
       // Perform login logic here
       const email = this.loginForm.get('email')!.value;
       const password = this.loginForm.get('password')!.value;
-      this.loginCheck(email,password);
+      this.loginCheck(email, password);
     }
-    else{
+    else {
       alert('password or email invalid')
     }
   }
 
 
-  constructor(public authService: AuthService,public firestore:Firestore, public dm:DarkmodeService) { }
+  constructor(public authService: AuthService, public firestore: Firestore, public dm: DarkmodeService,private fb: FormBuilder) {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]]
+    });
+   }
 
-  ngOnInit() {  }
+  ngOnInit() {
+
+   }
 
 
 
   loginCheck(email, password) {
     this.authService.SignIn(email, password)
-      
+
   }
 
 }

@@ -3,9 +3,17 @@
     cursor: pointer;
 }
 
+.content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 mat-form-field{
     width: 300px;
 }
+
 
 
   ::ng-deep .custom-border-red{

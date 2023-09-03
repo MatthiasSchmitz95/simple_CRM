@@ -5,10 +5,18 @@
     justify-content: flex-end;
     padding: 16px;
     color: white;
-
-
 }
 
+.btn-container{
+    display: flex;
+    justify-content: flex-end;
+}
+.add-contract-bt{
+
+        width: 45px;
+    height: 45px;
+
+}
 .img-container{
     width: 60px;
     height: 60px;
@@ -75,6 +83,8 @@ a{
   }
 
  .li-row{
+    margin-right: 24px;
+    justify-content: space-between;
     display: flex;
     align-items: center;
     margin-bottom: 10px;

@@ -1,45 +1,59 @@
-.mat-drawer-container{
+.mat-drawer-container {
     height: 100vh;
 }
 
-li{
+.clicked{
+    border-left: 6px solid #212747;
+    color:#212747;
+}
+
+.clicked-dm{   
+    border-left: 6px solid #76D3FB;
+    color:#76D3FB;
+}
+
+li {
     padding-left: 16px;
     height: 40px;
     margin-top: 16px;
     display: flex;
     align-items: center;
     cursor: pointer;
-    mat-icon{
+    border-left: 6px solid transparent;
+
+    mat-icon {
         margin-right: 16px;
     }
-    &:hover{
-        background-color: rgb(0,0,0,0.25);
+
+    &:hover {
+        background-color: rgb(0, 0, 0, 0.25);
+        
     }
 
 }
 
-mat-toolbar-row{
+mat-toolbar-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #212747;
     height: 100%;
-    
+
 }
 
-.sidenav{
-width: 300px;
+.sidenav {
+    width: 300px;
 }
 
-.logo-container{
+.logo-container {
     position: relative;
     min-height: 55px;
     height: 71px;
-    border-bottom:1px solid rgb(0,0,0,0.2);
+    border-bottom: 1px solid rgb(0, 0, 0, 0.2);
     display: flex;
     align-items: center;
 
-    img{
+    img {
         object-fit: cover;
         width: 100%;
         height: 100%;
@@ -49,8 +63,8 @@ width: 300px;
     }
 }
 
-.logo-container-login{
-    img{
+.logo-container-login {
+    img {
         object-fit: cover;
         width: 300px;
         height: 100%;
@@ -58,28 +72,28 @@ width: 300px;
     }
 }
 
-.toolbar{
+.toolbar {
     min-height: 56px;
     height: 72px;
 }
 
-.menu-items{
-list-style-type: none;
-padding-left: 0px;
-margin: 0px;
-font-size: 18px;
+.menu-items {
+    list-style-type: none;
+    padding-left: 1px;
+    margin: 0px;
+    font-size: 18px;
 
 
-
+    
 }
 
-.router-container{
+.router-container {
     padding-top: 16px;
     padding-right: 56px;
     padding-left: 56px;
 }
 
-.bottom{
+.bottom {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -88,43 +102,44 @@ font-size: 18px;
     z-index: 3;
 }
 
-.mobile-logo{
+.mobile-logo {
     display: none;
 }
 
-@media(max-width:750px){
-    .sidenav{
+@media(max-width:750px) {
+    .sidenav {
         display: none;
     }
 
-    .desktop{
+    .desktop {
         display: none;
-        
+
     }
+
     .mat-toolbar.mat-primary {
         background-color: #212747;
     }
 
-    .mobile-logo{
+    .mobile-logo {
         width: 200px;
         border: none;
         display: flex;
     }
 
-    .router-container{
+    .router-container {
         padding-left: 0;
         padding-right: 0;
     }
 
-    .toolbar{
+    .toolbar {
         height: 56px;
     }
 
-    .bottom{
+    .bottom {
         display: flex;
     }
 
-    .mat-toolbar-row{
+    .mat-toolbar-row {
         height: 56px;
     }
 }
