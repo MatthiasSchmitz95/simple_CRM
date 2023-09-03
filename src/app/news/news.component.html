@@ -3,7 +3,7 @@
     <div class="news-container">
     <div class="link-container" *ngFor="let news of savedNews">
         <h6>{{news.title}}</h6>
-        <a href="{{news.url}}"[class.darkmode-background-black]="this.dm.isChecked">
+        <a href="{{news.url}}"[class.darkmode-background-black]="this.dm.isChecked" target="_blank" rel="noopener">
             <img class="news-img" src="{{news.image_url}}" alt="">
             <div>{{news.description}}</div>
         </a>

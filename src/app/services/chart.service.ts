@@ -1,20 +1,20 @@
-import { ElementRef, Injectable, ViewChild,OnInit } from '@angular/core';
+import { ElementRef, Injectable, ViewChild, OnInit } from '@angular/core';
 import { AnimationSpec, Chart, registerables } from 'chart.js';
 import { DarkmodeService } from './darkmode.service';
 Chart.register(...registerables);
 @Injectable({
   providedIn: 'root'
 })
-export class ChartService{
+export class ChartService {
   myChart: any = null;
   cityList: string[] = [];
   cityData: number[] = [];
   kind = 'pie';
-  y=false;
-  
+  y = false;
 
-  constructor(public dm:DarkmodeService) { 
-    
+
+  constructor(public dm: DarkmodeService) {
+
   }
 
 
@@ -34,17 +34,18 @@ export class ChartService{
     }
   }
 
-   createChart(ctx: CanvasRenderingContext2D) {
+  createChart(ctx: CanvasRenderingContext2D) {
     if (this.myChart) {
       this.myChart.destroy();
     }
     if (ctx) {
-     this.myChart =  new Chart(ctx, {
-        type: 'pie',
+      this.myChart = new Chart(ctx, {
+        type: 'bar',
         data: {
           labels: this.cityList,
           datasets: [{
-            label: 'customer',
+            barPercentage: 1,
+            label: '',
             data: this.cityData,
             backgroundColor: [
               'rgba(255, 99, 132, 0.4)',
@@ -68,25 +69,48 @@ export class ChartService{
           }]
         },
         options: {
+          responsive: true, 
+          maintainAspectRatio: false,
+          transitions: {
+            resize: {
+              animation: {
+                duration: 0, 
+              },
+            },
+          },
+
           scales: {
             y: {
-              display: false
-            }
+              display: true,
+              beginAtZero: true, // Start the axis at 0
+              ticks: {
+                color: this.dm.isChecked ? 'white' : 'black',
+                stepSize: 1, // Set the step size to 1
+                precision: 0 // Optional: Set the number of decimal places to 0
+              }
+            },
+            x: {
+              ticks: {
+                color: this.dm.isChecked ? 'white' : 'black', // Change X-axis label color to blue
+              },
+          },
           },
           plugins: {
             legend: {
+              display: false,
               labels: {
-                color: this.dm.isChecked ? 'white' : 'black'
+                
               }
             }
           }
+
         }
       });
 
-      
+
     }
   }
-  
+
 
 
 }
