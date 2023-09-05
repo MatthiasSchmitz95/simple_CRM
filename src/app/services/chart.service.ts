@@ -63,14 +63,15 @@ export class ChartService {
               'rgba(243, 101, 15, 0.4)',
             ],
             borderColor: [
-              'rgba(0, 0, 0, 1)', // This is where the error is pointing to
+              'rgba(0, 0, 0, 1)', 
             ],
             borderWidth: 1
           }]
         },
         options: {
           responsive: true, 
-          maintainAspectRatio: false,
+          resizeDelay:0,
+maintainAspectRatio :false,
           transitions: {
             resize: {
               animation: {

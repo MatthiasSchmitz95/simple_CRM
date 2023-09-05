@@ -10,6 +10,10 @@
   align-items: center;
 }
 
+mat-card{
+  margin: 50px;
+}
+
 mat-form-field{
     width: 300px;
 }
@@ -24,4 +28,11 @@ mat-form-field{
     .mobile{
       padding-left:16px;
     }
+  }
+
+  @media(max-width:600px){
+  mat-card{
+    margin-left: 10px;
+    margin-right: 10px;
+  }
   }
