@@ -1,35 +1,39 @@
-<div class="content-container">
-    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
-    <div>
-        <h3 class="mt-32 mb-32">Sign Up</h3>
-        <mat-form-field class="mr-16" appearance="outline">
-            <mat-label [class.darkmode-input]="this.dm.isChecked">Name</mat-label>
-            <input [class.darkmode-input]="this.dm.isChecked" matInput type="text" placeholder="Name" formControlName="name" required>
-            <mat-error *ngIf="signUpForm.get('name').hasError('required')">Name is required</mat-error>
-        </mat-form-field>
-<div>
-    <mat-form-field class="mr-16" appearance="outline">
-        <mat-label [class.darkmode-input]="this.dm.isChecked">Email</mat-label>
-        <input [class.darkmode-input]="this.dm.isChecked" matInput type="email" placeholder="Email" formControlName="email" required>
-        <mat-error *ngIf="signUpForm.get('email').hasError('email')">Email is required</mat-error>
-    </mat-form-field>
-
-</div>
-
-        <div>
-            <mat-form-field class="mr-16" appearance="outline">
-                <mat-label [class.darkmode-input]="this.dm.isChecked">Password</mat-label>
-                <input matInput [class.darkmode-input]="this.dm.isChecked" type="password" placeholder="password" formControlName="password" required>
-                <mat-error *ngIf="signUpForm.get('password').hasError('required')">Email is required</mat-error>
+<div class="card-container mt-32">
+    <mat-card class="content-container">
+        <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+        <div class="container">
+            <h3 class="mt-32 mb-32">Sign Up</h3>
+            <mat-form-field  appearance="outline">
+                <mat-label [class.darkmode-input]="this.dm.isChecked">Name</mat-label>
+                <input [class.darkmode-input]="this.dm.isChecked" matInput type="text" placeholder="Name" formControlName="name" required>
+                <mat-error *ngIf="signUpForm.get('name').hasError('required')">Name is required</mat-error>
             </mat-form-field>
-            <div class="formGroup">
-                <button type="button" mat-raised-button color="primary" type="submit" [disabled]="!signUpForm.valid">Sign Up</button>
-            </div>
-            <div class="mt-32">
-                <span>Already have an account?
-                    <span class="colored" routerLink="/login">Log In</span></span>
+    <div>
+        <mat-form-field  appearance="outline">
+            <mat-label [class.darkmode-input]="this.dm.isChecked">Email</mat-label>
+            <input [class.darkmode-input]="this.dm.isChecked" matInput type="email" placeholder="Email" formControlName="email" required>
+            <mat-error *ngIf="signUpForm.get('email').hasError('email')">Email is required</mat-error>
+        </mat-form-field>
+    
+    </div>
+    
+            <div>
+                <mat-form-field  appearance="outline">
+                    <mat-label [class.darkmode-input]="this.dm.isChecked">Password</mat-label>
+                    <input matInput [class.darkmode-input]="this.dm.isChecked" type="password" placeholder="password" formControlName="password" required>
+                    <mat-error *ngIf="signUpForm.get('password').hasError('required')">Email is required</mat-error>
+                </mat-form-field>
+                <div class="formGroup">
+                    <button type="button" mat-raised-button color="primary" type="submit" [disabled]="!signUpForm.valid">Sign Up</button>
+                </div>
+                <div class="mt-32">
+                    <span>Already have an account?
+                        <span class="colored" routerLink="/login">Log In</span></span>
+                </div>
             </div>
         </div>
-    </div>
-</form>
+    </form>
+    </mat-card>
+
 </div>
+

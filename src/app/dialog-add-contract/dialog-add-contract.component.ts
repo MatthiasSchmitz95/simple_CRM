@@ -25,7 +25,6 @@ export class DialogAddContractComponent {
   user: User;
   loading = false;
   userId;
-  newContract = {};
   customerId;
   name;
   income = 0;
@@ -46,12 +45,13 @@ export class DialogAddContractComponent {
   }
 
   pushContract() {
-    this.newContract = {
+    debugger 
+     let newContract = {
       'name': this.name,
       'income': this.income,
       'expense': this.expense
     }
-    this.crud.existingContracts.push(this.newContract);
+    this.crud.pushContract(newContract);
     this.crud.updateCustomerContract(this.customerId, this.crud.existingContracts);
     this.closeDialog();
 

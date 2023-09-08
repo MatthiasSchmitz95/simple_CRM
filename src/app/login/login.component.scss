@@ -10,8 +10,17 @@
   align-items: center;
 }
 
+.card-container{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  
+}
+
 mat-card{
   margin: 50px;
+  max-width: 600px;
+  min-width: 332px;
 }
 
 mat-form-field{

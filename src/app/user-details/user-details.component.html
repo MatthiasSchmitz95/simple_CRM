@@ -6,7 +6,7 @@
         </button>
         <mat-menu #menuUser="matMenu">
             <button mat-menu-item (click)="openEditUser()">Edit</button>
-            <button [routerLink]="['/user' + userId]" mat-menu-item (click)="deleteUser()">Delete User</button>
+            <button [routerLink]="['/user']" mat-menu-item (click)="deleteUser()">Delete User</button>
         </mat-menu>
 
 
@@ -42,7 +42,7 @@
 
     <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="openEdit()">Edit</button>
-        <button [routerLink]="['/user' + userId]" mat-menu-item (click)="deleteUser()">Delete User</button>
+        <button [routerLink]="['/user' ]" mat-menu-item (click)="deleteUser()">Delete User</button>
     </mat-menu>
     <mat-card-title class="mb-16">Address</mat-card-title>
     <p>{{user.street}}</p>

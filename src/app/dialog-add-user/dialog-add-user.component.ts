@@ -21,6 +21,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class DialogAddUserComponent {
   user = new User();
+  maxDate: Date = new Date();
   birthDate;
   birthDay;
   loading = false;
@@ -53,21 +54,10 @@ export class DialogAddUserComponent {
   }
 
   saveUser() {
-    const user = {
-      firstName: this.addCustomer.get('firstName').value,
-      lastName: this.addCustomer.get('lastName').value,
-      birthDate: this.addCustomer.get('born').value,
-      street: this.addCustomer.get('street').value,
-      zipCode: this.addCustomer.get('zip').value,
-      city: this.addCustomer.get('city').value,
-      email: this.addCustomer.get('email').value,
-      phone: this.addCustomer.get('phone').value,
-      gender: this.addCustomer.get('gender').value,
-      // other fields...
-    };
+
     this.loading = true;
     const userRef = collection(this.firestore, `users/${this.authService.userData.uid}/customer`);
-    addDoc(userRef, user)
+    addDoc(userRef, this.user.toJson())
       .then(() => {
         this.loading = false;
         this.closeDialog();
@@ -77,6 +67,19 @@ export class DialogAddUserComponent {
 
   onSubmit(){
 
+  }
+
+  updateUserData(){
+    this.user.firstName= this.addCustomer.get('firstName').value;
+    this.user.lastName= this.addCustomer.get('lastName').value;
+    this.user.birthDate= this.addCustomer.get('born').value;
+    this.user.street= this.addCustomer.get('street').value;
+    this.user.zipCode= this.addCustomer.get('zip').value;
+    this.user.city= this.addCustomer.get('city').value;
+    this.user.email= this.addCustomer.get('email').value;
+    this.user.phone= this.addCustomer.get('phone').value;
+    this.user.gender= this.addCustomer.get('gender').value;
+    
   }
 
   closeDialog() {

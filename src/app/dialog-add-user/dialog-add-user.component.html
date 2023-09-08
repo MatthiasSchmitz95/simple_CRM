@@ -31,7 +31,7 @@
     <!-- Birth Day -->
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Birth Day</mat-label>
-      <input [disabled]="loading" matInput placeholder="DD/MM/JJJJ" formControlName="born" [matDatepicker]="picker1" id="picker1">
+      <input [disabled]="loading" matInput placeholder="MM/DD/JJJJ" formControlName="born" [matDatepicker]="picker1" id="picker1">
       <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
       <mat-datepicker #picker1></mat-datepicker>
     </mat-form-field>

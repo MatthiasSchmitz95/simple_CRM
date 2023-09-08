@@ -56,6 +56,9 @@ export class CrudService {
     return collection(this.firestore, collectionName);
   }
 
+  pushContract(contract){
+    this.existingContracts.push(contract);}
+
   getSubCollectionRef(collectionName: string, subCollectionName, collectionDocId: string) {
     return collection(this.firestore, collectionName, `${collectionDocId}/${subCollectionName}`);
   }
