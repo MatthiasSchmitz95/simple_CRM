@@ -5,7 +5,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { UserData } from '../../models/user-data';
 import { getAuth } from '@angular/fire/auth';
-import { Firestore, collection, doc, docData, getDoc } from '@angular/fire/firestore';
+import { Firestore, collection, deleteDoc, doc, docData, getDoc } from '@angular/fire/firestore';
 
 
 @Injectable({
@@ -40,7 +40,6 @@ export class AuthService {
   // Sign in with email/password
   async SignIn(email: string, password: string) {
     try {
-
       const result = await this.afAuth.signInWithEmailAndPassword(email, password);
       console.log('Ergebnis', result, email, password);
       // Wait for the getUserName() function to finish before proceeding
@@ -54,14 +53,18 @@ export class AuthService {
         });
       });
       await this.getUserName(result.user.uid); // Wait for this.getUserName() to finish
-      this.SetUserData(result.user, this.displayName);
-      this.router.navigate(['dashboard/' + result.user.uid]);
+      await this.SetUserData(result.user, this.displayName);
+      console.log('login URL','dashboard/' + `${result.user.uid}`);
+      
+      this.router.navigate(['dashboard/' + `${result.user.uid}`]);
     } catch (error) {
       console.error("Sign-in failed:", error);
     }
   }
   deleteUser() {
     this.afAuth.currentUser.then(user => user?.delete());
+    const userRef = doc(this.firestore, `users/${this.userId}`);
+    deleteDoc(userRef);
     this.SignOut();
   }
 
