@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
 
 
   constructor(public authService: AuthService, public firestore: Firestore, public dm: DarkmodeService,private fb: FormBuilder) {
+
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]

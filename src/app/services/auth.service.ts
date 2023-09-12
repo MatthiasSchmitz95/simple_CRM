@@ -1,10 +1,8 @@
 import { Injectable, NgZone } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument, } from '@angular/fire/compat/firestore';
-import * as auth from 'firebase/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { UserData } from '../../models/user-data';
-import { getAuth } from '@angular/fire/auth';
 import { Firestore, collection, deleteDoc, doc, docData, getDoc } from '@angular/fire/firestore';
 
 
@@ -17,6 +15,8 @@ export class AuthService {
   userData: any; // Save logged in user data
   userId;
   displayName;
+
+
   constructor(
     public afs: AngularFirestore, // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
@@ -47,18 +47,26 @@ export class AuthService {
         this.afAuth.authState.subscribe((user) => {
           if (user) {
             resolve(user);
+            console.log('user vorhanden');
+            console.log('logged?', this.isLoggedIn);
           } else {
             reject(new Error("User not found"));
+            console.log('kein user gefunden');
+
           }
         });
       });
-      await this.getUserName(result.user.uid); // Wait for this.getUserName() to finish
-      await this.SetUserData(result.user, this.displayName);
-      console.log('login URL','dashboard/' + `${result.user.uid}`);
-      
-      this.router.navigate(['dashboard/' + `${result.user.uid}`]);
+      // Wait for this.getUserName() to finish
+      this.getUserName(result.user.uid)
+        .then(() => {
+          this.SetUserData(result.user, this.displayName);
+          console.log('login URL', 'dashboard/' + `${result.user.uid}`);
+          this.router.navigate(['dashboard/' + `${result.user.uid}`]);
+        });
     } catch (error) {
       console.error("Sign-in failed:", error);
+      console.log('didnt work');
+
     }
   }
   deleteUser() {
@@ -85,8 +93,7 @@ export class AuthService {
         /* Call the SendVerificaitonMail() function when new user sign 
         up and returns promise */
         this.SendVerificationMail();
-        this.SetUserData(result.user, name)
-          ;
+        this.SetUserData(result.user, name)  ;
 
 
       })
@@ -96,6 +103,8 @@ export class AuthService {
     return this.afAuth.currentUser
       .then((u: any) => u.sendEmailVerification())
       .then(() => {
+        const user = JSON.parse(localStorage.getItem('user')!);
+        localStorage.setItem('user', JSON.stringify(user));
         this.router.navigate(['verify-email-address']);
       });
   }
@@ -136,9 +145,11 @@ export class AuthService {
   }
   // Sign out
   SignOut() {
-    this.router.navigate(['login']);
     return this.afAuth.signOut().then(() => {
+      this.router.navigate(['login']);
       localStorage.removeItem('user');
+      console.log(this.isLoggedIn);
+
     });
   }
 }

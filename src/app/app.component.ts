@@ -19,7 +19,8 @@ export class AppComponent implements OnInit {
       if (user) {
         this.userId = this.authService.userData.uid;
         this.crud.userId =this.userId;
-        console.log('uid is', this.userId)
+        console.log(this.authService.isLoggedIn,'logged!');
+        
       }
 
     });

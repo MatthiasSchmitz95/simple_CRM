@@ -42,7 +42,6 @@ export class ProfileComponent implements OnInit {
       alert('no permissions to delete the Guest user')
     }
     else {
-      debugger
       try {
         const userIdRef = doc(this.firestore, `users/${this.authService.userData.uid}`);
         await deleteDoc(userIdRef);
