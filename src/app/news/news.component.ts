@@ -16,8 +16,6 @@ export class NewsComponent implements OnInit {
   ngOnInit(): void {
     this.crud.getNews().subscribe((response => {
       this.savedNews = response;
-      
-      console.log('news',this.savedNews);
       this.savedNews=this.savedNews.news.data;
       
     }));
@@ -34,7 +32,5 @@ export class NewsComponent implements OnInit {
       .then(() => {
         this.crud.saveNews(this.news);
       })
-    console.log(this.news);
-
   }
 }

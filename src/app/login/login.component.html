@@ -15,6 +15,9 @@
                   <mat-error *ngIf="loginForm.get('password').hasError('required')">Password is required</mat-error>
                 </mat-form-field>
               <div>
+                <div class="err" *ngIf="this.authService.err">
+                  email or password wrong
+                </div>
                 <button mat-raised-button class="mr-16" color="primary" [disabled]="!loginForm.valid" type="submit">Login</button>
                 <button mat-raised-button  type="button"
                     (click)="loginCheck('guest@trash-mail.com','guestlogin')">Guest Login</button>

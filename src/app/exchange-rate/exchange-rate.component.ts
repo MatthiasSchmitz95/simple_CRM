@@ -25,12 +25,12 @@ async  ngOnInit() {
       .then(response => response.json())
       .then(data => {
         this.exchangeRates = data;
-        console.log(this.exchangeRates);
+        (this.exchangeRates);
         this.pushCurrencies();
         this.toCurrency= this.currencies[8].name;
         this.fromCurrency = this.currencies[31].name;
-        console.log(this.toCurrency,'tocurrnecy');
-        console.log(this.fromCurrency,'fromCurrency');
+        (this.toCurrency,'tocurrnecy');
+        (this.fromCurrency,'fromCurrency');
 
       })
       .catch(error => {
@@ -46,7 +46,7 @@ async  ngOnInit() {
         value: this.exchangeRates.data[currency]
       });
     }
-    console.log(this.currencies);
+    (this.currencies);
   }
 
   calculate() {

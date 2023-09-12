@@ -61,7 +61,7 @@ export class DialogAddContractComponent {
     const userArr = this.crud.getUserById(customerId);
     userArr.subscribe((user) => {
       this.user = new User(user);
-      console.log(this.user.contracts);
+      (this.user.contracts);
       this.checkForContracts();
     })
   }

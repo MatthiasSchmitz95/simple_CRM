@@ -39,9 +39,20 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     const element = document.querySelector('#dashboard');
+    const elements = [
+      document.querySelector('#customer'),
+      document.querySelector('#profile'),
+      document.querySelector('#imprint'),
+      document.querySelector('#policy'),
+    ];
+    elements.forEach((element) => {
+      if (element) {
+        element.classList.remove('clicked');
+      }
+    });
+
     if (element) {
       element.classList.add('clicked');
-
     }
     const elementMobile = document.querySelector('#dashboardm');
     if (elementMobile) {

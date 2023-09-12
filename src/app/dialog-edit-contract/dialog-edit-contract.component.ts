@@ -30,7 +30,7 @@ export class DialogEditContractComponent implements OnInit {
 
   ngOnInit(): void {
     this.contracts = this.user.contracts;
-    console.log(this.contracts);
+    (this.contracts);
     this.customerId = this.crud.customerId;
 
   }

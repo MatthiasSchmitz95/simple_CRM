@@ -40,7 +40,7 @@ export class UserDetailsComponent implements OnInit {
       if (user) {
         this.userId = user.uid;
         this.crud.userId = this.userId;
-        console.log(this.userId, 'klappt?');
+        (this.userId, 'klappt?');
         this.route.paramMap.subscribe((paramMap) => {
           this.customerId = paramMap.get('id');
           this.getUserById(this.crud.userId, this.customerId);
@@ -94,7 +94,7 @@ export class UserDetailsComponent implements OnInit {
     const day = this.user.birthDate.getDate();
     const year = this.user.birthDate.getFullYear();
     this.bDate = `${month}/${day}/${year}`;
-    console.log(this.bDate);
+    (this.bDate);
 
   }
 

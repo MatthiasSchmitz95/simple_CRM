@@ -63,19 +63,19 @@ export class ChartService {
               'rgba(243, 101, 15, 0.4)',
             ],
             borderColor: [
-              'rgba(0, 0, 0, 1)', 
+              'rgba(0, 0, 0, 1)',
             ],
             borderWidth: 1
           }]
         },
         options: {
-          responsive: true, 
-          resizeDelay:0,
-maintainAspectRatio :false,
+          responsive: true,
+          resizeDelay: 0,
+          maintainAspectRatio: false,
           transitions: {
             resize: {
               animation: {
-                duration: 0, 
+                duration: 0,
               },
             },
           },
@@ -94,13 +94,13 @@ maintainAspectRatio :false,
               ticks: {
                 color: this.dm.isChecked ? 'white' : 'black', // Change X-axis label color to blue
               },
-          },
+            },
           },
           plugins: {
             legend: {
               display: false,
               labels: {
-                
+
               }
             }
           }

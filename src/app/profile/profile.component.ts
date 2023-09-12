@@ -24,7 +24,7 @@ export class ProfileComponent implements OnInit {
       if (user) {
         this.getUserById()
           .subscribe((result) => {
-            console.log(result);
+            (result);
             this.userData = result;
           })
       }
@@ -45,7 +45,7 @@ export class ProfileComponent implements OnInit {
       try {
         const userIdRef = doc(this.firestore, `users/${this.authService.userData.uid}`);
         await deleteDoc(userIdRef);
-        console.log('Document deleted successfully');
+        ('Document deleted successfully');
       } catch (error) {
         console.error('Error deleting document:', error);
       }

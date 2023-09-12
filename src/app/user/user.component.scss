@@ -4,6 +4,10 @@
     bottom: 80px;
 }
 
+.container{
+    overflow-y: auto;
+}
+
 .user-table{
     border-collapse: collapse;
     tr{
@@ -34,5 +38,21 @@
 
 }
 
+@media(max-width:750px){
+    .add-user-bt {
+        top: 71px;
+        position: absolute;
+        right: 10px;
+    }
 
+    .container{
+        margin-bottom: 64px;
+    }
+}
+
+@media(max-width:350px){
+    .user-table{
+     font-size:11px;
+    }
+ }
 

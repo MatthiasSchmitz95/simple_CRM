@@ -26,27 +26,27 @@ export class DialogAddUserComponent {
   birthDay;
   loading = false;
   userData: any;
-  addCustomer:FormGroup;
+  addCustomer: FormGroup;
   constructor(public dialog: MatDialog, public crud: CrudService, public firestore: Firestore,
-     public dialogRef: MatDialogRef<DialogAddUserComponent>, public authService: AuthService,
-     public dm:DarkmodeService, public fb:FormBuilder) {
+    public dialogRef: MatDialogRef<DialogAddUserComponent>, public authService: AuthService,
+    public dm: DarkmodeService, public fb: FormBuilder) {
 
-      this.addCustomer = this.fb.group({
-        firstName: ['', Validators.required],
-        lastName: ['', Validators.required],
-        gender: [''],
-        born: [''],
-        email: ['', [Validators.required, Validators.email]],
-        phone: [''],
-        street: [''],
-        zip: [''],
-        city: [''],
-      });
-      
+    this.addCustomer = this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      gender: [''],
+      born: [''],
+      email: ['', [Validators.required, Validators.email]],
+      phone: [''],
+      street: [''],
+      zip: [''],
+      city: [''],
+    });
+
   }
 
   convertDate() {
-    this.birthDay = this.user.birthDate.getTime();  
+    this.birthDay = this.user.birthDate.getTime();
     const month = this.user.birthDate.getMonth() + 1;
     const day = this.user.birthDate.getDate();
     const year = this.user.birthDate.getFullYear();
@@ -65,21 +65,23 @@ export class DialogAddUserComponent {
 
   }
 
-  onSubmit(){
-
+  onSubmit() {
+    debugger
+    this.updateUserData();
+    this.saveUser();
   }
 
-  updateUserData(){
-    this.user.firstName= this.addCustomer.get('firstName').value;
-    this.user.lastName= this.addCustomer.get('lastName').value;
-    this.user.birthDate= this.addCustomer.get('born').value;
-    this.user.street= this.addCustomer.get('street').value;
-    this.user.zipCode= this.addCustomer.get('zip').value;
-    this.user.city= this.addCustomer.get('city').value;
-    this.user.email= this.addCustomer.get('email').value;
-    this.user.phone= this.addCustomer.get('phone').value;
-    this.user.gender= this.addCustomer.get('gender').value;
-    
+  updateUserData() {
+    this.user.firstName = this.addCustomer.get('firstName').value;
+    this.user.lastName = this.addCustomer.get('lastName').value;
+    this.user.birthDate = this.addCustomer.get('born').value;
+    this.user.street = this.addCustomer.get('street').value;
+    this.user.zipCode = this.addCustomer.get('zip').value;
+    this.user.city = this.addCustomer.get('city').value;
+    this.user.email = this.addCustomer.get('email').value;
+    this.user.phone = this.addCustomer.get('phone').value;
+    this.user.gender = this.addCustomer.get('gender').value;
+
   }
 
   closeDialog() {

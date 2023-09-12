@@ -22,6 +22,7 @@ export class CustomerChartComponent {
   cityData = [];
 
 
+
   constructor(public crud: CrudService, public firestore: Firestore, public authService: AuthService, public dm: DarkmodeService, public chart: ChartService) {
 
   }
@@ -31,6 +32,7 @@ export class CustomerChartComponent {
       if (user) {
         this.getCityNames(user.uid);
         this.chart.setChartData(this.cityList, this.cityData);
+
       }
     });
   }
@@ -67,7 +69,7 @@ export class CustomerChartComponent {
 
     querySnapshot.forEach((doc) => {
       // doc.data() is never undefined for query doc snapshots
-      // console.log('suche ist', doc.id, " => ", doc.data());
+      // ('suche ist', doc.id, " => ", doc.data());
     });
   }
 

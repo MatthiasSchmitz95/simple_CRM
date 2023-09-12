@@ -96,12 +96,15 @@
   </div>
 
 <mat-card class="mt-32 p-24 mobile-mb-100" [class.darkmode-background-black]="this.dm.isChecked">
-    <form (submit)="pushNote()" #noteForm="ngForm">
+    <form  (submit)="pushNote()" #noteForm="ngForm">
     <mat-card-title class="mb-16">Write note</mat-card-title>
-    <mat-form-field class="mr-16" style="width: 300px;">
-        <mat-label>Textarea</mat-label>
-        <textarea id="notes" [(ngModel)]="newNote" name="newNote" matInput  ngModel #newNoteModel="ngModel" required></textarea>
-    </mat-form-field>
-    <button class="save-button" type="submit" mat-raised-button color="primary" [disabled]="!noteForm.form.valid">Save</button>
+    <div class="note-container">
+        <mat-form-field class="mr-16 full-width">
+            <mat-label>Textarea</mat-label>
+            <textarea id="notes" [(ngModel)]="newNote" name="newNote" matInput  ngModel #newNoteModel="ngModel"></textarea>
+        </mat-form-field>
+        <button class="save-button" type="submit" mat-raised-button color="primary" [disabled]="!noteForm.form.valid">Save</button>
+    </div>
+
 </form>
 </mat-card>

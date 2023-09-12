@@ -78,6 +78,7 @@ a{
     cursor: pointer;
 }
 
+
 .note-text {
     word-wrap: break-word !important; /* Allow text to wrap to the next line */
   }
@@ -106,11 +107,21 @@ a{
 
 
 }
+#notes{
+    width: 100%;
+}
+
+.note-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
   
 
 @media(max-width:750px){
     .mobile-mb-100{
-        margin-bottom: 100px;
+        margin-bottom: 64px;
     }
 }
 
@@ -119,4 +130,9 @@ a{
         flex-direction: column;
     }
 }
+
+
+
+
+
 

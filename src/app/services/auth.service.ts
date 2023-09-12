@@ -15,6 +15,9 @@ export class AuthService {
   userData: any; // Save logged in user data
   userId;
   displayName;
+  logged = false;
+  err = false;
+  createErr = false;
 
 
   constructor(
@@ -26,6 +29,10 @@ export class AuthService {
   ) {
     /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
+    this.localStorage();
+  }
+
+  localStorage() {
     this.afAuth.authState.subscribe((user) => {
       if (user) {
         this.userData = user;
@@ -36,37 +43,31 @@ export class AuthService {
         JSON.parse(localStorage.getItem('user')!);
       }
     });
+
   }
   // Sign in with email/password
   async SignIn(email: string, password: string) {
     try {
       const result = await this.afAuth.signInWithEmailAndPassword(email, password);
-      console.log('Ergebnis', result, email, password);
       // Wait for the getUserName() function to finish before proceeding
       await new Promise((resolve, reject) => {
         this.afAuth.authState.subscribe((user) => {
           if (user) {
+            this.logged = true;
             resolve(user);
-            console.log('user vorhanden');
-            console.log('logged?', this.isLoggedIn);
           } else {
+            this.logged = true;
             reject(new Error("User not found"));
-            console.log('kein user gefunden');
-
           }
         });
       });
-      // Wait for this.getUserName() to finish
       this.getUserName(result.user.uid)
         .then(() => {
           this.SetUserData(result.user, this.displayName);
-          console.log('login URL', 'dashboard/' + `${result.user.uid}`);
           this.router.navigate(['dashboard/' + `${result.user.uid}`]);
         });
     } catch (error) {
-      console.error("Sign-in failed:", error);
-      console.log('didnt work');
-
+      this.err = true;
     }
   }
   deleteUser() {
@@ -80,9 +81,10 @@ export class AuthService {
     let userRef = doc(this.firestore, 'users', `${id}`);
     const docSnapshot = await getDoc(userRef);
     const user = docSnapshot.data();
-    console.log('Data', user)
     this.displayName = user.displayName;
   }
+
+
 
 
   // Sign up with email/password
@@ -90,20 +92,22 @@ export class AuthService {
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
-        /* Call the SendVerificaitonMail() function when new user sign 
-        up and returns promise */
+        /* Call the SendVerificaitonMail() function when a new user signs up */
         this.SendVerificationMail();
-        this.SetUserData(result.user, name)  ;
-
-
+        this.SetUserData(result.user, name);
       })
+      .catch((error) => {
+        this.createErr = true;
+      });
   }
+
   // Send email verfificaiton when new user sign up
   SendVerificationMail() {
     return this.afAuth.currentUser
       .then((u: any) => u.sendEmailVerification())
       .then(() => {
         const user = JSON.parse(localStorage.getItem('user')!);
+        user.emailVerified = true;
         localStorage.setItem('user', JSON.stringify(user));
         this.router.navigate(['verify-email-address']);
       });
@@ -123,7 +127,7 @@ export class AuthService {
   // Returns true when user is looged in and email is verified
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user')!);
-    return user !== null && user.emailVerified !== false ? true : false;
+    return this.logged === true && user !== null ? true : false;
   }
   /* Setting up user data when sign in with username/password, 
   sign up with username/password and sign in with social auth  
@@ -148,8 +152,12 @@ export class AuthService {
     return this.afAuth.signOut().then(() => {
       this.router.navigate(['login']);
       localStorage.removeItem('user');
-      console.log(this.isLoggedIn);
+      (this.isLoggedIn);
+      this.logged = false;
 
     });
+
   }
+
+
 }

@@ -21,10 +21,10 @@ export class CrudService {
     const userInstance = collection(this.firestore, 'user')
     addDoc(userInstance, user.toJson())
       .then(() => {
-        console.log("User saved");
+        ("User saved");
       })
       .catch((e) => {
-        console.log(e);
+        (e);
 
       })
   }
@@ -33,7 +33,7 @@ export class CrudService {
     const userRef = collection(this.firestore, `users/${this.authService.userData.uid}/customer`);
     addDoc(userRef, this.user.toJson())
       .then((result: any) => {
-        console.log(this.authService.userData.uid, result);
+        (this.authService.userData.uid, result);
       });
   }
 
@@ -105,8 +105,6 @@ export class CrudService {
   async countCollection() {
     const coll = collection(this.firestore, 'user');
     const snapshot = await getCountFromServer(coll);
-    console.log('count: ', snapshot.data().count);
-
   }
 
 }

@@ -31,7 +31,6 @@ export class UserComponent implements OnInit {
         this.crud.getUser()
         .subscribe((result: User[]) => {
           this.loadedUser = result;
-          console.log('customer data',result,user);
         });
 
       } 

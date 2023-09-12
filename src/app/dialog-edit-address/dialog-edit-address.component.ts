@@ -18,7 +18,7 @@ export class DialogEditAddressComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<DialogEditAddressComponent>, public crud: CrudService, public firestore: Firestore, public authService:AuthService) { }
  
   ngOnInit(): void {
-    console.log(this.user);
+    (this.user);
     
   }
  
